@@ -1,22 +1,24 @@
-const express = require('express')
-// const bodyParser = require('body-parser')
+import express from 'express'
+import Agendamento from '../models/agendamento.mjs'
 const servico = express()
 servico.use(express.json())
 const porta = 9000
 
 const agendamentos = {}
-contador = 0
+let contador = 0
 
 servico.get("/agendamentos", (req, res) => {
     res.send(agendamentos)
 })
 
 servico.post("/agendamentos", (req, res) => {
-    const { nome } = req.body
-    const { data } = req.body
-    const { hora } = req.body
-    const { local } = req.body
-    agendamentos[++contador] = { contador, nome, data, hora, local }
+    let agendamento = new Agendamento(
+        req.body.nome,
+        req.body.data,
+        req.body.hora,
+        req.body.local
+        );
+    agendamentos[++contador] = { agendamento }
     res.status(201).send(agendamentos[contador])
 })
 
