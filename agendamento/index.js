@@ -18,20 +18,19 @@ let contador = 0
 
 servico.get("/agendamentos", async (req, res) => {
     const conn = await mysql.createConnection(credentials)
-    let [rows] = await conn.query("SELECT * FROM Agendamento", [], (err, results, fields) => {})
-    console.log(rows)
-    res.send(base = rows)
+    let [result] = await conn.query("SELECT * FROM Agendamento", [], (err, results, fields) => {})
+    console.log(result)
+    res.send(base = result)
 })
 
-servico.post("/agendamentos", (req, res) => {
-    let agendamento = new Agendamento(
-        req.body.nome,
-        req.body.data,
-        req.body.hora,
-        req.body.local
-        );
-    agendamentos[++contador] = { agendamento }
-    res.status(201).send(agendamentos[contador])
+servico.post("/agendamentos", async (req, res) => {
+    const conn = await mysql.createConnection(credentials)
+    let [insert] = await conn.execute(
+        "INSERT INTO Agendamento (nome, dia, hora, lugar) VALUES (?, ?, ?, ?)", 
+        [req.body.nome, req.body.data, req.body.hora, req.body.local], 
+        (err, results, fields) => {})
+    console.log(insert)
+    res.status(201).send(insert)
 })
 
 servico.listen(porta, () => {
