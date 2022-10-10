@@ -1,6 +1,6 @@
 {
   "name": "agendamento",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Esse serviço cria e exibe agendamentos",
   "main": "index.js",
   "type": "module",
