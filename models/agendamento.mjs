@@ -1,13 +1,13 @@
 export default class Agendamento {
-    _nome
-    _data
-    _hora
-    _local
+    #nome
+    #data
+    #hora
+    #local
 
     constructor(nome, data, hora, local) {
-        this._nome = nome
-        this._data = data
-        this._hora = hora
-        this._local = local
+        this.#nome = nome
+        this.#data = data
+        this.#hora = hora
+        this.#local = local
     }
 }
