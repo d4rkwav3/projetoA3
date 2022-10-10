@@ -1,25 +1,24 @@
 import express from 'express'
-import Agendamento from '../models/agendamento.mjs'
+//import mysql from 'mysql2/promise'
+//import Agendamento from '../models/agendamento.mjs'
+import { Database } from '../models/database.mjs'
+
 const servico = express()
 servico.use(express.json())
 const porta = 9000
+const db = new Database('localhost', 'projetoA3', 'projetoA3', 'projetoA3')
 
-const agendamentos = {}
-let contador = 0
-
-servico.get("/agendamentos", (req, res) => {
-    res.send(agendamentos)
+servico.get("/agendamentos", async (req, res) => {
+    let resultado = await db.selectAll('Agendamento')
+    res.send(resultado)
 })
 
-servico.post("/agendamentos", (req, res) => {
-    let agendamento = new Agendamento(
-        req.body.nome,
-        req.body.data,
-        req.body.hora,
-        req.body.local
-        );
-    agendamentos[++contador] = { agendamento }
-    res.status(201).send(agendamentos[contador])
+servico.post("/agendamentos", async (req, res) => {
+    let tabela = 'Agendamento'
+    let colunas = '(nome, dia, hora, endereco)'
+    let valores = [req.body.nome, req.body.data, req.body.hora, req.body.local]
+    let insert = await db.insert(tabela, colunas, valores)
+    res.status(201).send(insert)
 })
 
 servico.listen(porta, () => {

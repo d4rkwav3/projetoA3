@@ -19,7 +19,7 @@ Sistema de agendamento de consultas para uma clínica psicológica.
 - [ ] Cadastro de usuários
 - [X] Agendamento de consultas
 - [ ] Inserção/Visualização de notas da consulta
-- [ ] Persistência de dados (MySQL/MariaDB)
+- [X] Persistência de dados (MySQL/MariaDB)
 - [ ] Histórico de consultas
 - [ ] Observações visíveis apenas para psicólogos
 - [ ] Tela de login
