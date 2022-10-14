@@ -4,22 +4,22 @@ import { config as cfg } from '../config.mjs'
 
 const servico = express()
 servico.use(express.json())
-const porta = cfg.portas.agendamento
+const porta = cfg.portas.consulta
 const db = new Database(cfg.db.host, cfg.db.user, cfg.db.passwd, cfg.db.base)
-const msg = `Serviços de agendamentos rodando na porta ${porta}`
+const msg = `Serviços de consultas rodando na porta ${porta}`
 
-servico.get("/agendamentos", async (req, res) => {
-    let resultado = await db.selectAll('Agendamento')
+servico.get('/consultas', async (req, res) => {
+    let resultado = await db.selectAll('Consulta')
 
     console.log(msg)
 
-    res.send(resultado)
+    res.status(200).send(resultado)
 })
 
-servico.post("/agendamentos", async (req, res) => {
-    let tabela = 'Agendamento'
-    let colunas = '(nome, dia, hora, endereco)'
-    let valores = [req.body.nome, req.body.data, req.body.hora, req.body.endereco]
+servico.post('/consultas', async (req, res) => {
+    let tabela = 'Consulta'
+    let colunas = '(observacoes, orientacoes, agendamentoId)'
+    let valores = [req.body.observacoes, req.body.orientacoes, req.body.agendamentoId]
     let insert = await db.insert(tabela, colunas, valores)
 
     console.log(msg)
