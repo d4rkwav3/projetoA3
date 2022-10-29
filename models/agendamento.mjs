@@ -1,13 +1,10 @@
 export default class Agendamento {
-    #nome
-    #data
-    #hora
-    #local
-
-    constructor(nome, data, hora, local) {
-        this.#nome = nome
-        this.#data = data
-        this.#hora = hora
-        this.#local = local
+    constructor(id, data, hora, local, paciente, sessao=undefined) {
+        this.id = id
+        this.data = data
+        this.hora = hora
+        this.local = local
+        this.paciente = paciente,
+        this.sessao = sessao
     }
 }
