@@ -1,12 +1,6 @@
 <nav>
     <!-- <a class="nav" routerLink="home">Home</a> -->
-    <label>Login:</label>
-
-    <form class="nav">
-        <input type="text" name="login" id="login" placeholder="seu nome de usuário" #login>
-        <input type="password" name="senha" id="senha" placeholder="sua senha" #senha>
-        <button (click)="enter(login.value, senha.value)">Logar</button>
-    </form>
+    <login></login>
 </nav>
 
 <router-outlet></router-outlet>
