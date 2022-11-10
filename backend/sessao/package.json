@@ -1,12 +1,11 @@
 {
-  "name": "agendamento",
+  "name": "sessao",
   "version": "0.0.3",
-  "description": "Microsserviço que gerencia agendamento de sessões",
-  "main": "agendamento.mjs",
-  "type": "module",
+  "description": "Microsserviço que cria e gerencia Sessões",
+  "main": "sessao.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon agendamento.mjs"
+    "start": "nodemon sessao.mjs"
   },
   "repository": {
     "type": "git",
@@ -14,7 +13,7 @@
   },
   "keywords": [
     "projetoA3",
-    "agendamento"
+    "sessão"
   ],
   "author": "Bruno Venâncio (d4rkwav3)",
   "license": "UNLICENSED",
