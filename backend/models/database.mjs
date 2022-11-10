@@ -1,6 +1,6 @@
 import mysql from 'mysql2/promise'
 
-export class Database {
+export default class Database {
 
     constructor(host, user, passwd, database){
         this.credentials = {

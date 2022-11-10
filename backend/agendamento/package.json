@@ -1,18 +1,19 @@
 {
   "name": "agendamento",
   "version": "0.0.2",
-  "description": "Esse serviço cria e exibe agendamentos",
-  "main": "index.js",
+  "description": "Microsserviço que gerencia agendamento de sessões",
+  "main": "agendamento.mjs",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "nodemon agendamento.mjs"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/d4rkwav3/projetoA3.git"
   },
   "keywords": [
+    "projetoA3",
     "agendamento"
   ],
   "author": "Bruno Venâncio (d4rkwav3)",
@@ -20,12 +21,5 @@
   "bugs": {
     "url": "https://github.com/d4rkwav3/projetoA3/issues"
   },
-  "homepage": "https://github.com/d4rkwav3/projetoA3#readme",
-  "dependencies": {
-    "axios": "^0.27.2",
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "mysql2": "^2.3.3",
-    "nodemon": "^2.0.20"
-  }
+  "homepage": "https://github.com/d4rkwav3/projetoA3#readme"
 }
