@@ -1,4 +1,5 @@
 import mysql from 'mysql2/promise'
+import { Usuario } from '../models/usuario.mjs'
 
 export default class Database {
 
@@ -38,5 +39,20 @@ export default class Database {
         let [resultado] = await conexao.execute(statement, values, (err, results) => {})
         conexao.end()
         return resultado
+    }
+
+    async login(user, passwd) {
+        let statement = "SELECT id, login, senha FROM usuario WHERE login = ? and senha = ?"
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, [user, passwd], (err, results) => {})
+        conexao.end()
+
+        if (resultado.length === 1) {
+            let user = new Usuario(resultado[0].id, resultado[0].login, resultado[0].senha)
+            return user
+        }
+        else {
+            return null
+        }
     }
 }
