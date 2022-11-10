@@ -4,9 +4,9 @@ USE projetoA3;
 
 CREATE TABLE Usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    login VARCHAR(50) NOT NULL,
+    login VARCHAR(50) NOT NULL UNIQUE,
     senha VARCHAR(50) NOT NULL,
-    email VARCHAR(200) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
     dataNascimento DATE NOT NULL,
     nome VARCHAR(50) NOT NULL,
     sobrenome VARCHAR(200) NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE Usuario (
     
 CREATE TABLE Psicologo (
 	crp INT PRIMARY KEY,
-    cpf VARCHAR(11) NOT NULL,
+    cpf VARCHAR(11) NOT NULL UNIQUE,
     usuario_id INT NOT NULL,
     titulacao VARCHAR(100) NOT NULL,
     especialidade VARCHAR(100),
@@ -66,8 +66,8 @@ USE projetoA3;
 INSERT INTO Usuario(
 	id,
     login,
-    email,
     senha,
+    email,
     dataNascimento,
     nome,
     sobrenome,
@@ -77,8 +77,8 @@ INSERT INTO Usuario(
     cep) VALUES (
     1,
 	'bvsilva',
-    'Orten123',
-    'lostmellodies@hotmail.com',
+    '123',
+    'bvsilva@hotmail.com',
     '1990-08-29',
     'Bruno',
     'Venâncio',
@@ -92,8 +92,8 @@ INSERT INTO Paciente(cpf, usuario_id) VALUES ('38434365847', 1);
 INSERT INTO Usuario(
 	id,
     login,
-    email,
     senha,
+    email,
     dataNascimento,
     nome,
     sobrenome,
@@ -103,8 +103,8 @@ INSERT INTO Usuario(
     cep) VALUES (
     2,
 	'pripontes',
-    'Orten123',
-    'pripontes@yahoo.com',
+    '123',
+    'psicopri@hotmail.com',
     '1986-06-21',
     'Priscila',
     'Pontes',
