@@ -5,6 +5,7 @@ USE projetoA3;
 CREATE TABLE Usuario (
 	id INT PRIMARY KEY AUTO_INCREMENT,
     login VARCHAR(50) NOT NULL,
+    senha VARCHAR(50) NOT NULL,
     email VARCHAR(200) NOT NULL,
     dataNascimento DATE NOT NULL,
     nome VARCHAR(50) NOT NULL,
@@ -59,3 +60,63 @@ CREATE TABLE Sessao (
 ALTER TABLE Agendamento
 	ADD CONSTRAINT sessao_agendamento
     FOREIGN KEY (sessao_id) REFERENCES Sessao(id);
+
+USE projetoA3;
+
+INSERT INTO Usuario(
+	id,
+    login,
+    email,
+    senha,
+    dataNascimento,
+    nome,
+    sobrenome,
+    telefone,
+    endereco,
+    cidade,
+    cep) VALUES (
+    1,
+	'bvsilva',
+    'Orten123',
+    'lostmellodies@hotmail.com',
+    '1990-08-29',
+    'Bruno',
+    'Venâncio',
+    '11987786706',
+    'Rua Suarella, 99 - Vila Missionária',
+    'São Paulo - SP',
+    '04430080');
+    
+INSERT INTO Paciente(cpf, usuario_id) VALUES ('38434365847', 1);
+    
+INSERT INTO Usuario(
+	id,
+    login,
+    email,
+    senha,
+    dataNascimento,
+    nome,
+    sobrenome,
+    telefone,
+    endereco,
+    cidade,
+    cep) VALUES (
+    2,
+	'pripontes',
+    'Orten123',
+    'pripontes@yahoo.com',
+    '1986-06-21',
+    'Priscila',
+    'Pontes',
+    '11123456789',
+    'Avenida José André de Moraes, 1143 - Jardim Monte Alegre',
+    'Taboão da Serra - SP',
+    '06755260');
+
+INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao) VALUES (
+	'123456', 
+    '12345678910', 
+    2,
+    'Graduada em Psicologia');
+    
+UPDATE Paciente SET psicologo_crp = 123456, valorConsulta = 100.00 WHERE cpf='38434365847';
