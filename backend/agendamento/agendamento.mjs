@@ -1,6 +1,7 @@
 import express from 'express'
 import Database from '../models/database.mjs'
 import { config } from '../../config.mjs'
+import Agendamento from '../models/agendamento.mjs'
 
 const servico = express()
 servico.use(express.json())
@@ -19,7 +20,7 @@ servico.get("/agendamentos", async (req, res) => {
 })
 
 servico.post("/agendamentos", async (req, res) => {
-    let tabela = 'Agendamento'
+    let tabela = 'agendamento'
     let colunas = '(ag_data, hora, sala, paciente_id)'
     let valores = [req.body.ag_data, req.body.hora, req.body.sala, req.body.paciente_id]
     let insert = await db.insert(tabela, colunas, valores)

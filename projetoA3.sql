@@ -41,7 +41,7 @@ CREATE TABLE Agendamento (
     hora TIME NOT NULL,
     sala VARCHAR(50) NOT NULL,
     paciente_id VARCHAR(11) NOT NULL,
-    sessao_id INT NOT NULL,
+    sessao_id INT DEFAULT NULL,
     FOREIGN KEY (paciente_id) REFERENCES Paciente(cpf)
 );
 
