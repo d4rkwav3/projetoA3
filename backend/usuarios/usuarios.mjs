@@ -13,12 +13,12 @@ const db = new Database(
 const msg = `Serviços de usuários rodando na porta ${porta}`
 
 servico.get('/login', async (req, res) => {
-    let login = await db.login(req.body.login, req.body.senha)
+    let user = await db.login(req.body.login, req.body.senha)
 
-    if (login !== null)  {
+    if (user !== null)  {
         console.log("login efetuado com sucesso")
         console.log(msg)
-        return res.status(200).send(login)
+        return res.status(200).send(user)
     }
     else {
         console.log("Erro! Verifique os dados e tente novamente")
