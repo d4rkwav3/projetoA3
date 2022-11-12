@@ -1,12 +1,12 @@
-nav {
+app-login {
+    display: flexbox;
+    flex-direction: row;
+    justify-content: end;
+    align-self: flex-end;
     text-align: right;
 }
 .nav  {
     padding-right: 1rem;
-}
-form {
-    display: inline-block;
-    margin-top: 1rem;
 }
 input {
     margin-left: 5px;
@@ -14,29 +14,11 @@ input {
 button {
     margin-left: 5px;
 }
-/*
-form {
-    display: float;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    width: 400px;
-    height: 150px;
-    background-color: black;
-    border-radius: 1rem;
+nav > h3 {
+    display: inline-block;
+    text-align: left;
 }
-input, button {
-    display: block;
-    text-align: center;
-    margin-top: 1rem;
-    width: 350px;
-    height: 30px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
-}
-*/
-h1, h2, h3 {
+main {
     text-align: center;
     margin-top: 2rem;
 }
