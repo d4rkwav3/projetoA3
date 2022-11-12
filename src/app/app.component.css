@@ -1,21 +1,10 @@
-app-login {
-    display: flexbox;
+mat-toolbar {
+    height: 4.5rem;
+    display: flex;
     flex-direction: row;
-    justify-content: end;
-    align-self: flex-end;
-    text-align: right;
+    justify-content: space-between;
 }
-.nav  {
-    padding-right: 1rem;
-}
-input {
-    margin-left: 5px;
-}
-button {
-    margin-left: 5px;
-}
-nav > h3 {
-    display: inline-block;
+mat-toolbar > h3 {
     text-align: left;
 }
 main {
