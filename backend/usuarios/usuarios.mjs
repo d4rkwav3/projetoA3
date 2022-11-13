@@ -13,6 +13,8 @@ const db = new Database(
 const msg = `Serviços de usuários rodando na porta ${porta}`
 
 servico.get('/login', async (req, res) => {
+    console.log(req.body)
+
     let user = await db.login(req.body.login, req.body.senha)
 
     if (user !== null)  {

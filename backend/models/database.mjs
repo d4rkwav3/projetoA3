@@ -48,7 +48,7 @@ export default class Database {
         conexao.end()
 
         if (resultado.length === 1) {
-            let user = new Usuario(resultado[0].id, resultado[0].login, resultado[0].senha)
+            let user = new Usuario(resultado[0].login, resultado[0].senha, resultado[0].id)
             return user
         }
         else {

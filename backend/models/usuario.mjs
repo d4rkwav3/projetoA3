@@ -1,8 +1,8 @@
 export class Usuario {
     constructor(
-        id,
         login,
         senha,
+        id
         // email,
         // dataNascimento,
         // nome,
@@ -12,9 +12,9 @@ export class Usuario {
         // cidade,
         // cep
     ){
-        this.id = id,
         this.login = login,
-        this.senha = senha
+        this.senha = senha,
+        this.id = id
         // this.email = email,
         // this.dataNascimento = dataNascimento,
         // this.nome = nome,
