@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './models/user.model';
 
 @Component({
     selector: 'app-root',
@@ -14,10 +15,8 @@ export class AppComponent {
     //   this.visible = this.visible ? false:true;
     // }
 
+    user: User | undefined = undefined;
     login!: string;
     senha!: string;
 
-    enter(user: string, senha: string): void {
-
-    }
 }

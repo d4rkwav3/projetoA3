@@ -42,13 +42,13 @@ export default class Database {
     }
 
     async login(user, passwd) {
-        let statement = "SELECT id, login, senha FROM usuario WHERE login = ? and senha = ?"
+        let statement = "SELECT id, login, senha FROM Usuario WHERE login = ? and senha = ?"
         let conexao = await mysql.createConnection(this.credentials)
         let [resultado] = await conexao.execute(statement, [user, passwd], (err, results) => {})
         conexao.end()
 
         if (resultado.length === 1) {
-            let user = new Usuario(resultado[0].login, resultado[0].senha, resultado[0].id)
+            let user = {"login": resultado[0].login, "senha": resultado[0].senha, "id": resultado[0].id}
             return user
         }
         else {

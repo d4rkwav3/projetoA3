@@ -3,24 +3,26 @@ import { NgForm } from '@angular/forms';
 import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models/user.model';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
+    constructor(private ls: LoginService, private router: Router) {}
 
-  constructor(private ls: LoginService) { }
+    ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
+    private user!: User | Observable<User> | undefined;
 
-  private user!: Observable<User>;
-
-  logIn(form: NgForm): void {
-    let login = new User(form.value.login, form.value.passwd)
-    this.user = this.ls.findUser(login)
-    console.log("Usuário do servidor", this.user)
-  }
+    logIn(form: NgForm): void {
+        let login: User = { login: form.value.login, senha: form.value.senha };
+        this.ls.findUser(login).subscribe((user) => {
+            console.log('logado com', user.login);
+            this.user = user;
+            this.router.navigate(["home"])
+        });
+    }
 }

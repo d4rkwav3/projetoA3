@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/d4rkwav3/projetoA3/issues"
   },
-  "homepage": "https://github.com/d4rkwav3/projetoA3#readme"
+  "homepage": "https://github.com/d4rkwav3/projetoA3#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
