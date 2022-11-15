@@ -13,15 +13,15 @@ const db = new Database(
 const msg = `Serviços de sessões rodando na porta ${porta}`
 
 servico.get('/sessao', async (req, res) => {
-    let resultado = await db.selectAll('sessao')
+    let resultado = await db.selectAll('Sessao')
     console.log(msg)
     res.status(200).send(resultado)
 })
 
 servico.post('/sessao', async (req, res) => {
-    let tabela = 'sessao'
+    let tabela = 'Sessao'
     let colunas = '(observacoes, notas, agendamento_id, paciente_id, psicologo_id)'
-    let valores = [req.body.observacoes, req.body.notas, req.body.agendamento_id, req.body.paciente_id, req.body.psicologo_id]
+    let valores = [req.query.observacoes, req.query.notas, req.query.agendamento_id, req.query.paciente_id, req.query.psicologo_id]
     let insert = await db.insert(tabela, colunas, valores)
 
     console.log(insert)
