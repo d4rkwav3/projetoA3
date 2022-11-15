@@ -8,16 +8,13 @@ import { User } from '../models/user.model';
 })
 export class LoginService {
 
-  private apiLogin: string = "http://localhost:930/login"
+  private apiLogin: string = "http://localhost:9300/login"
 
   constructor(private http: HttpClient) { }
 
-  findUser(user: User): Observable<User> {
-    console.log("Usuário do método findUser", user)
-    let query = new HttpParams().append("login", user.getLogin()).append("senha", user.getPass())
-    console.log("url do servidor", this.apiLogin)
-    console.log("parametros http", query)
-    console.log(this.http.get<User>(this.apiLogin, {params: query}))
-    return this.http.get<User>(this.apiLogin, {params: query});
+  findUser(user: User) :Observable<User> {
+    let parametros = new HttpParams().append("login", user.login).append("senha", user.senha)
+    let inscrição = this.http.get<User>(this.apiLogin, {params: parametros})
+    return inscrição
   }
 }

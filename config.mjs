@@ -1,8 +1,8 @@
 export const config = {
     portas: {
-        agendamento: 910,
-        sessao: 920,
-        usuarios: 930
+        agendamento: 9100,
+        sessao: 9200,
+        usuarios: 9300
     },
     database: {
         host: "localhost",
