@@ -1,20 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs'
+import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class LoginService {
+    private apiLogin: string = 'http://localhost:9300/login';
+    private LoguedUser!: User;
 
-  private apiLogin: string = "http://localhost:9300/login"
+    constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  findUser(user: User) :Observable<User> {
-    let parametros = new HttpParams().append("login", user.login).append("senha", user.senha)
-    let inscrição = this.http.get<User>(this.apiLogin, {params: parametros})
-    return inscrição
-  }
+    findUser(user: User): Observable<User> {
+        let parametros = new HttpParams()
+            .append('login', user.login)
+            .append('senha', user.senha);
+        let inscrição = this.http.get<User>(this.apiLogin, {
+            params: parametros,
+        });
+        return inscrição;
+    }
 }
