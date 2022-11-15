@@ -5,7 +5,7 @@ e Usabilidade, Desenvolvimento Web, Mobile e Jogos da unidade Jabaquara.
 
 ## Tema
 
-Sistema de agendamento de consultas para uma clínica psicológica.
+Sistema de agendamento de sessões para uma clínica psicológica.
 
 ## Membros do grupo
 
@@ -17,12 +17,12 @@ Sistema de agendamento de consultas para uma clínica psicológica.
 ## Funcionalidades a serem implementadas
 
 - [ ] Cadastro de usuários
-- [X] Agendamento de consultas
-- [ ] Inserção/Visualização de notas da consulta
+- [X] Agendamento de sessões
+- [ ] Inserção/Visualização de notas da sessão
 - [X] Persistência de dados (MySQL/MariaDB)
-- [ ] Histórico de consultas
+- [ ] Histórico de sessões
 - [ ] Observações visíveis apenas para psicólogos
-- [ ] Tela de login
+- [X] Tela de login
 
 ## Linguagens e ferramentas utilizadas
 
