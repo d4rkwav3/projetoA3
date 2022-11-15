@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Paciente } from 'src/app/models/paciente.model';
 import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.loguedUser = this.ls.getUser();
+        console.log(this.loguedUser)
     }
 
     loguedUser!: User;

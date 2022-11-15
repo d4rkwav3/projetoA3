@@ -1,7 +1,8 @@
 import express from 'express'
+import cors from 'cors'
+import axios from 'axios'
 import Database from '../models/database.mjs'
 import { config } from '../../config.mjs'
-import cors from 'cors'
 
 const servico = express()
 servico.use(express.json())
@@ -13,6 +14,7 @@ const db = new Database(
     config.database.password, 
     config.database.database)
 const msg = `Serviços de usuários rodando na porta ${porta}`
+const eventUrl = "http://localhost:9900/eventos"
 /*
 servico.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -30,13 +32,14 @@ servico.get('/login', async (req, res) => {
     let user = await db.login(req.query.login, req.query.senha)
 
     if (user !== null)  {
-        console.log("Resposta do DB", user)
-//        console.log("login efetuado com sucesso")
+        console.log("Usuário localizado:", user)
+        axios.post(eventUrl, { tipo: "Login efetuado", user })
         console.log(msg)
         return res.status(200).send(user)
     }
     else {
-        console.log("Erro! Verifique os dados e tente novamente")
+        console.log("Nenhum usuário localizado")
+        axios.post(eventUrl, { tipo: "Login" })
         console.log(msg)
         return res.status(200).send(false)
     }
