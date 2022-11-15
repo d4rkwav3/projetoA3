@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from './models/user.model';
 import { Router } from '@angular/router';
+import { LoginService } from './services/login.service';
 
 @Component({
     selector: 'app-root',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
     title = 'frontend';
 
-    constructor(private router: Router) {}
+    constructor(private router: Router, private ls: LoginService) {}
 
     ngOnInit(): void {}
 
