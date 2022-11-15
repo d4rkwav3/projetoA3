@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
     onLogin(value: boolean): void {
         this.hide = true;
+        this.user = this.ls.getUser();
     }
 
     onLogOut(): void {
