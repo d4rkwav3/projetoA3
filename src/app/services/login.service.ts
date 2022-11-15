@@ -16,9 +16,17 @@ export class LoginService {
         let parametros = new HttpParams()
             .append('login', user.login)
             .append('senha', user.senha);
-        let inscrição = this.http.get<User>(this.apiLogin, {
+        let inscricao = this.http.get<User>(this.apiLogin, {
             params: parametros,
         });
-        return inscrição;
+        return inscricao;
+    }
+
+    setUser(user: User) :void {
+        this.LoguedUser = user;
+    }
+
+    getUser() :User {
+        return this.LoguedUser;
     }
 }

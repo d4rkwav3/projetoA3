@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
                 if (user){
                     console.log('logado com', user.login);
                     this.user = user;
+                    this.ls.setUser(user);
                     this.loginSucessful.emit(true);
                     this.router.navigate(['home']);
                 } else {
