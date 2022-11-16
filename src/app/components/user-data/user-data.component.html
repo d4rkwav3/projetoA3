@@ -1,0 +1,15 @@
+<h2>Seus Dados</h2>
+<mat-card>
+    <mat-form-field>
+        <input matInput type="text" name="nome" id="nome" placeholder="nome">
+    </mat-form-field>
+    
+    <p>login</p>
+    <p>email</p>
+    <p>dataNascimento</p>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Escolha uma data">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+</mat-card>

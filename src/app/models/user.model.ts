@@ -1,6 +1,5 @@
 import { Paciente } from "./paciente.model";
 import { Psicologo } from "./psicologo.model";
-import { Observable } from "rxjs";
 
 export interface User {
     login: string;
