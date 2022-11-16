@@ -6,7 +6,7 @@
 <div *ngIf="agendamentosRecentes">
     <mat-card *ngFor="let ag of agendamentosRecentes">
         <mat-card-header>
-            <mat-card-title>{{ ag.data_hora | date:'dd'}} de {{ ag.data_hora | date:'MMM'}}</mat-card-title>
+            <mat-card-title>{{ ag.data_hora | date:'dd' }} de {{ ag.data_hora | date:'MMMM'}}</mat-card-title>
             <mat-card-subtitle>{{ ag.data_hora | date:'HH:mm'}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>

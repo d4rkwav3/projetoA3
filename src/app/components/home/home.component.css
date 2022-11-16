@@ -26,6 +26,9 @@ div {
 }
 .mat-card-subtitle {
     color: white;
+    padding-top: 1rem;
+    font-size: medium;
+    font-style: italic;
 }
 .mat-card-title {
     height: 35px;
