@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
     <h3>Clinica Psicológica</h3>
     <!-- <a class="nav" routerLink="home">Home</a> -->
-    <app-login *ngIf="!hide" (loginSucessful)="onLogin($event)"></app-login>
-    <button (click)="onLogOut()" *ngIf="hide" mat-raised-button color="secundary" routerLink="">Deslogar</button>
+    <div class="navbar">
+        <app-login *ngIf="!hide" (loginSucessful)="onLogin($event)"></app-login>
+        <app-nav-bar (click)="onLogOut()" *ngIf="hide"></app-nav-bar>
+    </div>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

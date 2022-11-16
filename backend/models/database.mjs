@@ -1,5 +1,6 @@
 import mysql from 'mysql2/promise'
 import { Usuario } from '../models/usuario.mjs'
+import { Paciente } from '../models/paciente.mjs'
 
 export default class Database {
 
@@ -62,9 +63,36 @@ export default class Database {
                 resultado[0].cidade,
                 resultado[0].cep)
             return user
-        }
-        else {
+        } else {
             return null
         }
+    }
+
+    async getAdditionalUserData(table, user_id) {
+        let statement = "SELECT * FROM " + table + " WHERE usuario_id = ?"
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, [user_id], (err, results) => {})
+        conexao.end()
+
+        if (resultado.length === 1) {
+            let paciente = new Paciente(
+                resultado[0].cpf,
+                resultado[0].usuario_id,
+                resultado[0].psicologo_crp,
+                resultado[0].valorConsulta,
+                resultado[0].responsavel
+            )
+            return paciente
+        } else {
+            return null
+        }
+    }
+
+    async getNextAppointments(paciente_id, date_now) {
+        let statement = "SELECT * FROM Agendamento WHERE paciente_id = ? AND data_hora > ? ORDER BY data_hora ASC LIMIT 6"
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, [paciente_id, date_now], (err, results) => {})
+        conexao.end()
+        return resultado
     }
 }

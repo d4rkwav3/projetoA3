@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import axios from "axios";
 import moment from "moment";
 import { config } from "../../config.mjs";
 
@@ -8,7 +7,7 @@ const servico = express();
 servico.use(express.json());
 servico.use(cors());
 const porta = config.portas.eventos;
-const eventos = ["Login efetuado", "Busca agendamentos", "Novo agendamento", "Busca sessões", "Sessão realizada"];
+const eventos = ["Login efetuado", "Busca agendamentos", "Novo agendamento", "Busca sessões", "Sessão realizada", "Busca paciente", "Busca psicologo"];
 const msg = `Serviços de eventos rodando na porta ${porta}`;
 
 servico.post("/eventos", (req, res) => {
@@ -47,9 +46,22 @@ servico.post("/eventos", (req, res) => {
             datetime
         );
         console.table(evento.insert);
+    } else if (evento.tipo === eventos[5]) {
+        console.log(
+            "Nova busca pela tabela de paciente efetuada às",
+            datetime
+        );
+        console.table(evento.paciente);
+    } else if (evento.tipo === eventos[6]) {
+        console.log(
+            "Nova busca pela tabela de psicologo efetuada às",
+            datetime
+        );
+        console.table(evento.psicologo);
     } else {
         console.log("Deu ruim!");
     }
+    res.status(200)
 });
 
 servico.listen(porta, () => {

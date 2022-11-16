@@ -14,3 +14,11 @@ main {
 ul {
     text-align: center;
 }
+.navbar > button {
+    margin-left: 1rem;
+}
+
+.navbar > app-navbar {
+    width: 75%;
+    margin-top: 1rem;
+}

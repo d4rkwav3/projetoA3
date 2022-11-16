@@ -1,3 +1,33 @@
-h1 {
+h1, h2, h3 {
+    text-align: center;
+    margin-top: 1rem;
+}
+div {
+    margin-top: 1rem;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    height: 400px;
+}
+:host {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.mat-card {
+    background-color: #3f51b5;
+    color: white;
+    height: 135px;
+    width: 135px;
+}
+.mat-card-subtitle {
+    color: white;
+}
+.mat-card-title {
+    height: 35px;
     text-align: center;
 }

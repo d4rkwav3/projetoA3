@@ -13,7 +13,8 @@ CREATE TABLE Usuario (
     telefone VARCHAR(11),
     endereco VARCHAR(200),
     cidade VARCHAR(30),
-    cep VARCHAR(8)
+    cep VARCHAR(8),
+    tipo VARCHAR(9) NOT NULL
 );
     
 CREATE TABLE Psicologo (
@@ -37,8 +38,7 @@ CREATE TABLE Paciente (
 
 CREATE TABLE Agendamento (
 	id INT PRIMARY KEY AUTO_INCREMENT,
-    ag_data DATE NOT NULL,
-    hora TIME NOT NULL,
+    data_hora DATETIME NOT NULL UNIQUE,
     sala VARCHAR(50) NOT NULL,
     paciente_id VARCHAR(11) NOT NULL,
     sessao_id INT DEFAULT NULL,
@@ -74,7 +74,8 @@ INSERT INTO Usuario(
     telefone,
     endereco,
     cidade,
-    cep) VALUES (
+    cep,
+    tipo) VALUES (
     1,
 	'bvsilva',
     '123',
@@ -85,7 +86,8 @@ INSERT INTO Usuario(
     '11987786706',
     'Rua Suarella, 99 - Vila Missionária',
     'São Paulo - SP',
-    '04430080');
+    '04430080',
+    'paciente');
     
 INSERT INTO Paciente(cpf, usuario_id) VALUES ('38434365847', 1);
     
@@ -100,7 +102,8 @@ INSERT INTO Usuario(
     telefone,
     endereco,
     cidade,
-    cep) VALUES (
+    cep,
+    tipo) VALUES (
     2,
 	'pripontes',
     '123',
@@ -111,7 +114,8 @@ INSERT INTO Usuario(
     '11123456789',
     'Avenida José André de Moraes, 1143 - Jardim Monte Alegre',
     'Taboão da Serra - SP',
-    '06755260');
+    '06755260',
+    'psicologo');
 
 INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao) VALUES (
 	'123456', 

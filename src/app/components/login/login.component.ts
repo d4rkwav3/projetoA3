@@ -23,11 +23,7 @@ export class LoginComponent implements OnInit {
         if (form.value.login === "" || form.value.senha === "") {
             return alert('Erro, verifique suas credenciais e tente novamente');
         } else {
-            let login: User = {
-                login: form.value.login,
-                senha: form.value.senha,
-            };
-            this.ls.findUser(login).subscribe((user) => {
+            this.ls.findUser(form.value.login, form.value.senha).subscribe((user) => {
                 if (user){
                     console.log('logado com', user.login);
                     this.user = user;

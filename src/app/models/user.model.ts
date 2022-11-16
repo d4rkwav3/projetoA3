@@ -1,14 +1,19 @@
+import { Paciente } from "./paciente.model";
+import { Psicologo } from "./psicologo.model";
+import { Observable } from "rxjs";
+
 export interface User {
     login: string;
     senha: string;
-    id?: number | undefined;
-    email?: string | undefined;
-    dataNascimento?: string | undefined;
-    nome?: string | undefined;
-    sobrenome?: string | undefined;
-    telefone?: string | undefined;
-    endereço?: string | undefined;
-    cidade?: string | undefined;
-    cep?: string | undefined;
-    tipo?: string | undefined;
+    id: number;
+    email: string;
+    dataNascimento: string;
+    nome: string;
+    sobrenome: string;
+    telefone: string;
+    endereço: string;
+    cidade: string
+    cep: string;
+    tipo: string;
+    data?: Paciente | Psicologo;
 }

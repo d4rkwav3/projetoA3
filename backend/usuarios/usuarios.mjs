@@ -15,17 +15,7 @@ const db = new Database(
     config.database.database)
 const msg = `Serviços de usuários rodando na porta ${porta}`
 const eventUrl = "http://localhost:9900/eventos"
-/*
-servico.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept, Authorization'
-    );
-    res.setHeader('Access-Control-Allow-Methods', '*');
-    next();
-  });
-*/
+
 servico.get('/login', async (req, res) => {
     console.log("query params", req.query)
 
@@ -41,7 +31,27 @@ servico.get('/login', async (req, res) => {
         console.log("Nenhum usuário localizado")
         axios.post(eventUrl, { tipo: "Login" })
         console.log(msg)
-        return res.status(200).send(false)
+        return res.status(400)
+    }
+})
+
+servico.get('/user', async (req, res) => {
+    console.log("query params", req.query)
+
+    if (req.query.tipo === "paciente") {
+        let paciente = await db.getAdditionalUserData("Paciente", req.query.usuario_id)
+        console.log(paciente)
+        axios.post(eventUrl, { tipo: "Busca paciente", paciente })
+        console.log(msg)
+        return res.status(200).send(paciente)
+    } else if (req.query.tipo === "psicologo") {
+        let psicologo = await db.getAdditionalUserData("Psicologo", req.query.usuario_id)
+        console.log(psicologo)
+        axios.post(eventUrl, { tipo: "Busca psicologo", psicologo })
+        console.log(msg)
+        return res.status(200).send(psicologo)
+    } else {
+        res.status(400)
     }
 })
 

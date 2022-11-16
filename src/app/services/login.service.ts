@@ -3,20 +3,22 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
+import { Psicologo } from '../models/psicologo.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class LoginService {
     private apiLogin: string = 'http://localhost:9300/login';
+    private userDataApi: string = 'http://localhost:9300/user';
     private LoguedUser!: User;
 
     constructor(private http: HttpClient) {}
 
-    findUser(user: User): Observable<User> {
+    findUser(login: string, senha: string): Observable<User> {
         let parametros = new HttpParams()
-            .append('login', user.login)
-            .append('senha', user.senha);
+            .append('login', login)
+            .append('senha', senha);
         let inscricao = this.http.get<User>(this.apiLogin, {
             params: parametros,
         });
@@ -29,6 +31,11 @@ export class LoginService {
 
     getUser() :User {
         return this.LoguedUser;
+    }
+
+    getUserData(id: number, tipo: string) :Observable<Paciente | Psicologo> {
+        let parametros = new HttpParams().append("tipo", tipo).append("usuario_id", id)
+        return this.http.get<Paciente | Psicologo>(this.userDataApi, {params: parametros})
     }
 
 }

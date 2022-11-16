@@ -1,24 +1,15 @@
-import Usuario from './usuario.mjs'
-
-export class Paciente extends Usuario {
+export class Paciente {
     constructor (
-        id,
-        login,
-        email,
-        dataNascimento,
-        nome,
-        sobrenome,
-        telefone,
-        endereco,
-        cidade,
-        cep,
         cpf,
+        usuario_id,
+        psicologo_crp,
         valorConsulta,
         responsavel
     ){
-        super(id, login, email, dataNascimento, nome, sobrenome, telefone, endereco, cidade, cep)
-        this.cpf = cpf,
-        this.valorConsulta = valorConsulta,
+        this.usuario_id = usuario_id
+        this.psicologo_crp = psicologo_crp
+        this.cpf = cpf
+        this.valorConsulta = valorConsulta
         this.responsavel = responsavel
     }
 }
