@@ -10,7 +10,7 @@ export interface User {
     nome: string;
     sobrenome: string;
     telefone: string;
-    endereço: string;
+    endereco: string;
     cidade: string
     cep: string;
     tipo: string;

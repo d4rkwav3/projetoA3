@@ -1,6 +1,4 @@
-h1,
-h2,
-h3 {
+h1, h2, h3 {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -34,15 +32,78 @@ mat-datepicker-toggle {
     /*muda a cor do ícone do datepicker*/
     color: white !important;
 }
+input {
+    caret-color: white;
+}
 .mat-form-field {
     width: 500px;
 }
-.nome {
+#nome {
     display: inline-block;
     width: 150px;
 }
-.sobrenome {
+#sobrenome {
     margin-left: 10px;
     display: inline-block;
     width: 340px;
+}
+#dataNascimento {
+    margin-left: 10px;
+    display: inline-block;
+    width: 125px;
+}
+#idade {
+    display: inline-block;
+    width: 50px;
+    margin-left: 10px;
+}
+#telefone {
+    display: inline-block;
+    width: 100px;
+}
+#email {
+    display: inline-block;
+    width: 255px;
+    margin-right: 10px;
+}
+#endereço {
+    display: inline-block;
+    width: 255px;
+}
+#cidade {
+    display: inline-block;
+    width: 145px;
+    margin-left: 10px;
+}
+#cep {
+    display: inline-block;
+    width: 80px;
+    margin-left: 10px;
+}
+#cpf {
+    display: inline-block;
+    width: 100px;
+}
+#responsavel {
+    margin-left: 10px;
+    display: inline-block;
+    width: 390px;   
+}
+#titulacao {
+    margin-left: 10px;
+    display: inline-block;
+    width: 180px;
+}
+#especialidade {
+    margin-left: 10px;
+    display: inline-block;
+    width: 200px;
+}
+#salvar {
+    display: flex;
+    align-items: flex-end;
+}
+.mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
 }
