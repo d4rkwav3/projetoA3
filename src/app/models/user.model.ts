@@ -14,5 +14,6 @@ export interface User {
     cidade: string
     cep: string;
     tipo: string;
-    data?: Paciente | Psicologo;
+    paciente?: Paciente;
+    psico?:Psicologo;
 }

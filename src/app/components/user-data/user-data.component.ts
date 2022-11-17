@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Paciente } from 'src/app/models/paciente.model';
 import { Psicologo } from 'src/app/models/psicologo.model';
 import { User } from 'src/app/models/user.model';
@@ -12,34 +12,24 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class UserDataComponent implements OnInit {
     constructor(private ud: UserDataService, private ls: LoginService) {}
-
+  
     ngOnInit(): void {
         //let diff: number = Math.abs(new Date().getTime() - new Date(this.user.dataNascimento).getTime());
         //let age: number = Math.floor((diff / (1000 * 3600 * 24)) / 365.25);
         //this.idade = String(age);
+
+        this.user = this.ls.getUser()
+        
+        if (this.user.paciente) {
+            this.userData = this.user.paciente;
+        } else if (this.user.psico) {
+            this.psicoData = this.user.psico;
+        }
+        this.ls.setActiveRoute("userdata");
+        console.log("rota ativa: userdata");
     }
 
-    user: User = {
-        id: 1,
-        nome: 'Bruno',
-        sobrenome: 'Venâncio',
-        email: 'projetoA3@angular.com',
-        login: 'bvsilva',
-        senha: '123',
-        dataNascimento: '1990-08-29',
-        telefone: '11987786706',
-        endereco: 'Rua dos Bobos Nº0',
-        cidade: 'São Paulo - SP',
-        cep: '04430080',
-        tipo: 'paciente',
-        data: {
-            cpf: '12345678910',
-            usuario_id: 1,
-            psicologo_crp: 123456,
-            valorConsulta: 100.0,
-            responsavel: 'ç',
-        },
-    };
+    user!: User;
 
     //userData?: Paciente;
     userData?: Paciente = {
@@ -55,6 +45,6 @@ export class UserDataComponent implements OnInit {
     idade!: string;
 
     salvar(): void {
-        this.ud.update(this.user, this.userData);
+        this.ud.updateUserInfo(this.user, this.userData);
     }
 }

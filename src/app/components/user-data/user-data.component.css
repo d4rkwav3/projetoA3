@@ -1,4 +1,6 @@
-h1, h2, h3 {
+h1,
+h2,
+h3 {
     text-align: center;
     margin-top: 1rem;
     margin-bottom: 1rem;
@@ -87,7 +89,7 @@ input {
 #responsavel {
     margin-left: 10px;
     display: inline-block;
-    width: 390px;   
+    width: 390px;
 }
 #titulacao {
     margin-left: 10px;
@@ -99,7 +101,7 @@ input {
     display: inline-block;
     width: 200px;
 }
-#salvar {
+.acoes {
     display: flex;
     align-items: flex-end;
 }
@@ -107,3 +109,6 @@ input {
     display: flex;
     justify-content: flex-end;
 }
+::ng-deep .mat-form-field-type-mat-native-select .mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
+    color: #888888 !important;
+  }

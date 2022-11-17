@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './models/user.model';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -13,12 +14,12 @@ export class AppComponent implements OnInit {
 
     constructor(private router: Router, private ls: LoginService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     user: User | undefined = undefined;
     hide: boolean = false;
 
-    onLogin(value: boolean): void {
+    onLogIn(): void {
         this.hide = true;
         this.user = this.ls.getUser();
     }

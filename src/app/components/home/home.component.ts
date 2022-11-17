@@ -15,14 +15,27 @@ export class HomeComponent implements OnInit {
         private aps: AppointmentsService) {}
 
     ngOnInit(): void {
+        this.loading = true;
+        this.ls.setActiveRoute("home");
+        console.log("rota ativa: home");
+
         this.loguedUser = this.ls.getUser();
-        this.ls.getUserData(this.loguedUser.id, this.loguedUser.tipo).subscribe((data) => {
-            this.loguedUser.data = data;
-            this.aps.getAppointments(this.loguedUser.data.cpf).subscribe((ag) => {
-                this.agendamentosRecentes = ag
+
+        if (this.loguedUser.tipo === 'paciente') {
+            this.ls.getUserData(this.loguedUser.id, this.loguedUser.tipo).subscribe((data) => {
+                this.loguedUser.paciente = data;
+                this.aps.getAppointments(this.loguedUser.paciente.cpf).subscribe((ag) => {
+                    this.agendamentosRecentes = ag
+                })
             })
-        })
+        } else if (this.loguedUser.tipo === 'psicologo') {
+            this.ls.getPsicoData(this.loguedUser.id, this.loguedUser.tipo).subscribe((data) => {
+                this.loguedUser.psico = data;
+            })
+        }
+        this.loading = false;
     }
+    loading: boolean = false;
     /*
     agendamentosRecentes?: Appointment[] = [
         {id: 1, data_hora: "2022-11-20 10:00:00", sala: "Online via Zoom", paciente_id: "38434365847", sessao_id: null},

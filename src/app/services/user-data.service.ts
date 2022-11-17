@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, pipe } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
 import { Psicologo } from '../models/psicologo.model';
@@ -32,12 +32,12 @@ export class UserDataService {
         this.newPsicoData = psico;
     }
 
-    update(user: User, patient?: Paciente, psico?: Psicologo) :void {
+    updateUserInfo(user: User, patient?: Paciente, psico?: Psicologo) :void {
         if (patient !== undefined && psico === undefined){ 
             let update: User = user;
-            update.data = patient
+            update.paciente = patient
             console.log(update)
-            let params = new HttpParams().append("id", update.id).append("paciente_id", update.data.cpf)
+            let params = new HttpParams().append("id", update.id).append("paciente_id", update.paciente.cpf)
             this.http.post(this.url, update, {params: params}).subscribe((res) => {console.log(res)})
         }
     }

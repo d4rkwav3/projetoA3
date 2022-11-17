@@ -3,6 +3,8 @@
 
 <h3 *ngIf="agendamentosRecentes">Próximas sessões:</h3>
 
+<mat-progress-spinner *ngIf="loading" value="50" mode="indeterminate"></mat-progress-spinner>
+
 <div *ngIf="agendamentosRecentes">
     <mat-card *ngFor="let ag of agendamentosRecentes">
         <mat-card-header>

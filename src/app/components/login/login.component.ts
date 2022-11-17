@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
     constructor(private ls: LoginService, private router: Router) {}
 
-    @Output() loginSucessful: EventEmitter<boolean> = new EventEmitter();
+    @Output() login: EventEmitter<boolean> = new EventEmitter();
 
     ngOnInit(): void {}
 
@@ -24,15 +24,17 @@ export class LoginComponent implements OnInit {
             return alert('Erro, verifique suas credenciais e tente novamente');
         } else {
             this.ls.findUser(form.value.login, form.value.senha).subscribe((user) => {
-                if (user){
-                    console.log('logado com', user.login);
+                //console.log(user)
+                if (user === null) {
+                    alert("Usuário ou senha inválidos!");
+                    form.reset();
+                } else if (user) {
+                    console.log('logado como', user.login);
                     this.user = user;
                     this.ls.setUser(user);
-                    this.loginSucessful.emit(true);
+                    this.login.emit(true);
+                    form.reset();
                     this.router.navigate(['home']);
-                } else {
-                    alert("Usuário ou senha inválidos!")
-                    form.reset()
                 }
             });
         }

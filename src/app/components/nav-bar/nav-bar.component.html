@@ -1,6 +1,7 @@
-<mat-button-toggle-group>
-    <mat-button-toggle>Agendar uma sessão</mat-button-toggle>
-    <mat-button-toggle>Sessões passadas</mat-button-toggle>
-    <mat-button-toggle>Seus dados</mat-button-toggle>
-    <mat-button-toggle routerLink="">Deslogar</mat-button-toggle>
-</mat-button-toggle-group>
+<button mat-raised-button routerLink="home" *ngIf="currentRoute === 'home'">Home</button>
+<button mat-stroked-button routerLink="home" *ngIf="currentRoute !== 'home'">Home</button>
+<button mat-stroked-button>Agendar uma sessão</button>
+<button mat-stroked-button>Sessões passadas</button>
+<button mat-raised-button routerLink="userdata" *ngIf="currentRoute === 'userdata'">Seus dados</button>
+<button mat-stroked-button routerLink="userdata" *ngIf="currentRoute !== 'userdata'">Seus dados</button>
+<button mat-stroked-button (click)="onLogOut()">Deslogar</button>

@@ -31,7 +31,7 @@ servico.get('/login', async (req, res) => {
         console.log("Nenhum usuário localizado")
         axios.post(eventUrl, { tipo: "Login" })
         console.log(msg)
-        return res.status(400)
+        return res.status(200).send(user)
     }
 })
 
