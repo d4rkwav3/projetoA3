@@ -1,11 +1,11 @@
 <h2>Seus Dados</h2>
 <mat-card>
     <mat-form-field id="nome">
-        <input matInput type="text" name="nome" placeholder="Nome" required  minlength="3" maxlength="50" [(ngModel)]="user.nome">
+        <input matInput type="text" name="nome" placeholder="Nome" disabled [(ngModel)]="user.nome">
     </mat-form-field>
 
     <mat-form-field id="sobrenome">
-        <input matInput type="text" name="sobrenome" placeholder="Sobrenome" required minlength="3" maxlength="50" [(ngModel)]="user.sobrenome">
+        <input matInput type="text" name="sobrenome" placeholder="Sobrenome" disabled [(ngModel)]="user.sobrenome">
     </mat-form-field>
 
     <mat-form-field id="email">
@@ -17,7 +17,7 @@
     </mat-form-field>
 
     <mat-form-field id="dataNascimento">
-        <input matInput required [matDatepicker]="picker" placeholder="Data de Nascimento" [(ngModel)]="user.dataNascimento">
+        <input matInput disabled [matDatepicker]="picker" placeholder="Data de Nascimento" [(ngModel)]="user.dataNascimento">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -26,7 +26,7 @@
     <mat-form-field id="endereço">
         <input matInput type="text" placeholder="Endereço" [(ngModel)]="user.endereco">
     </mat-form-field>
-
+    
     <mat-form-field id="cidade">
         <input matInput type="text" placeholder="Cidade" [(ngModel)]="user.cidade">
     </mat-form-field>
@@ -36,7 +36,7 @@
     </mat-form-field>
 
     <mat-form-field id="cpf" *ngIf="userData">
-        <input matInput type="text" placeholder="CPF" required minlength="11" maxlength="11" [(ngModel)]="userData.cpf">
+        <input matInput type="text" placeholder="CPF" disabled [(ngModel)]="userData.cpf">
     </mat-form-field>
 
     <mat-form-field id="responsavel" *ngIf="userData">
@@ -44,7 +44,7 @@
     </mat-form-field>
 
     <mat-form-field id="cpf" *ngIf="psicoData">
-        <input matInput type="text" placeholder="CPF" required minlength="11" maxlength="11" [(ngModel)]="psicoData.cpf">
+        <input matInput type="text" placeholder="CPF" disabled [(ngModel)]="psicoData.cpf">
     </mat-form-field>
 
     <mat-form-field id="titulacao" *ngIf="psicoData">

@@ -61,7 +61,7 @@ servico.post("/eventos", (req, res) => {
     } else {
         console.log("Deu ruim!");
     }
-    res.status(200)
+    res.status(200).send()
 });
 
 servico.listen(porta, () => {

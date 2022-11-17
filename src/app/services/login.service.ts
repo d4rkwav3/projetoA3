@@ -11,7 +11,15 @@ import { Psicologo } from '../models/psicologo.model';
 export class LoginService {
     private apiLogin: string = 'http://localhost:9300/login';
     private userDataApi: string = 'http://localhost:9300/user';
-    private LoguedUser!: User;
+    private LoguedUser: User = {
+        id: 1, nome: "Bruno", sobrenome: "Venâncio", email: "projetoA3@angular.com", login: "bvsilva", senha: "123", dataNascimento: "1990-08-29", telefone: "11987786706", endereco: "Rua dos Bobos Nº0", cidade: "São Paulo - SP", cep: "04430080", tipo: "paciente", data: {cpf: "12345678910", usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.00, responsavel: "ç"}
+    };
+
+    /*
+    testUser: User = {
+        id: 1, nome: "Bruno", sobrenome: "Venâncio", email: "projetoA3@angular.com", login: "bvsilva", senha: "123", dataNascimento: "1990-08-29", telefone: "11987786706", endereco: "Rua dos Bobos Nº0", cidade: "São Paulo - SP", cep: "04430080", tipo: "paciente", data: {cpf: "12345678910", usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.00, responsavel: "ç"}
+    }
+    */
 
     constructor(private http: HttpClient) {}
 

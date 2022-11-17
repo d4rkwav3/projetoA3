@@ -55,6 +55,12 @@ servico.get('/user', async (req, res) => {
     }
 })
 
+servico.post('/update', async (req, res) => {
+    console.log(req.query)
+    console.log(req.body)
+    return res.status(201).send({msg: "É isso"})
+})
+
 servico.listen(porta, () => {
     console.log(msg)
 })
