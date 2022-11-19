@@ -11,6 +11,7 @@ import { Psicologo } from '../models/psicologo.model';
 export class LoginService {
     private apiLogin: string = 'http://localhost:9300/login';
     private userDataApi: string = 'http://localhost:9300/user';
+    private psicoInfo: string = 'http://localhost:9300/psicoInfo'
     private LoguedUser!: User;
     private activeRoute: Subject<string> = new Subject<string>();
 
@@ -55,5 +56,23 @@ export class LoginService {
 
     getActiveRoute() :Observable<string> {
         return this.activeRoute.asObservable();
+    }
+
+    setUserData(patient?: Paciente, psico?: Psicologo) :void {
+        if(patient) {
+            this.LoguedUser.paciente = patient;
+        } else if (psico) {
+            this.LoguedUser.psico = psico;
+        }
+    }
+
+    onLogOut() :void {
+        this.LoguedUser.paciente = undefined;
+        this.LoguedUser.psico = undefined;
+    }
+
+    getPsicoInfo(crp: number) :Observable<string> {
+        let params = new HttpParams().append('crp', crp)
+        return this.http.get<string>(this.psicoInfo, {params: params});
     }
 }

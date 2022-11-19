@@ -53,6 +53,17 @@ servico.post("/agendamentos", async (req, res) => {
     res.status(201).send(insert)
 })
 
+servico.delete("/agendamentos", async (req, res) => {
+    let id = req.query.id
+    let remover = await db.removeAppointment(req.query.id)
+    console.log(remover)
+    axios.post(eventUrl, {
+        tipo: "Agendamento removido",
+        id
+    })
+    res.status(200).send(remover)
+})
+
 servico.listen(porta, () => {
     console.log(msg)
 })

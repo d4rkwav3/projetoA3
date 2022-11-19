@@ -27,6 +27,6 @@ export class AppComponent implements OnInit {
     onLogOut(): void {
         console.log(this.user?.login, "deslogado")
         this.hide = false;
-        //this.user = undefined;
+        this.ls.onLogOut();
     }
 }

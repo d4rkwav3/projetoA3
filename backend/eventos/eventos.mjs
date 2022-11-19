@@ -7,7 +7,7 @@ const servico = express();
 servico.use(express.json());
 servico.use(cors());
 const porta = config.portas.eventos;
-const eventos = ["Login efetuado", "Busca agendamentos", "Novo agendamento", "Busca sessões", "Sessão realizada", "Busca paciente", "Busca psicologo"];
+const eventos = ["Login efetuado", "Busca agendamentos", "Novo agendamento", "Busca sessões", "Sessão realizada", "Busca paciente", "Busca psicologo", "Agendamento removido"];
 const msg = `Serviços de eventos rodando na porta ${porta}`;
 
 servico.post("/eventos", (req, res) => {
@@ -58,6 +58,11 @@ servico.post("/eventos", (req, res) => {
             datetime
         );
         console.table(evento.psicologo);
+    } else if (evento.tipo === eventos[7]) {
+        console.log(
+            `Agendamento ${evento.id} removido às`,
+            datetime
+        );
     } else {
         console.log("Deu ruim!");
     }

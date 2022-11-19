@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
         if (this.loguedUser.tipo === 'paciente') {
             this.ls.getUserData(this.loguedUser.id, this.loguedUser.tipo).subscribe((data) => {
                 this.loguedUser.paciente = data;
+                this.ls.setUserData(data, undefined);
                 this.aps.getAppointments(this.loguedUser.paciente, undefined).subscribe((ag) => {
                     this.agendamentosRecentes = ag;
                     this.aps.setAppointments(ag);
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
         } else if (this.loguedUser.tipo === 'psicologo') {
             this.ls.getPsicoData(this.loguedUser.id, this.loguedUser.tipo).subscribe((data) => {
                 this.loguedUser.psico = data;
+                this.ls.setUserData(undefined, data);
                 this.aps.getAppointments(undefined, this.loguedUser.psico).subscribe((ag) => {
                     this.agendamentosRecentes = ag;
                     this.aps.setAppointments(ag);

@@ -24,7 +24,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCheckboxModule } from '@angular/material/checkbox'; 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatRadioModule } from '@angular/material/radio'; 
 
 /* Configura os pipes e datepicker para pt-br*/
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -64,7 +65,8 @@ registerLocaleData(ptBr)
     MatNativeDateModule,
     MatFormFieldModule,
     MatMomentDateModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatRadioModule
   ],
   providers: [
     // data do datepicker em pt-br

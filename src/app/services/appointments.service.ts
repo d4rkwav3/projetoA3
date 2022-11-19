@@ -33,4 +33,17 @@ export class AppointmentsService {
     setAppointments(appointment: Appointment[]): void {
         this.appointments = appointment;
     }
+
+    deleteAppointment(id: number) :void {
+        let params = new HttpParams().append('id', id);
+        this.http.delete(this.url, {params: params}).subscribe();
+    }
+
+    getCurrentAppointments() :Appointment[] | undefined {
+        if(this.appointments) {
+            return this.appointments;
+        } else {
+            return undefined;
+        }
+    }
 }

@@ -139,4 +139,20 @@ export default class Database {
             return resultado
         }
     }
+
+    async removeAppointment(id) {
+        let statement = 'DELETE FROM Agendamento WHERE id = ?'
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, [id], (err, results) => {})
+        conexao.end()
+        return resultado
+    }
+
+    async getPsicoInfo(crp) {
+        let statement = 'SELECT nome, sobrenome FROM Usuario RIGHT JOIN Psicologo ON crp WHERE tipo = ? AND crp = ? AND Usuario.id = Psicologo.usuario_id'
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, ['psicologo', crp], (err, results) => {})
+        conexao.end()
+        return resultado[0].nome + ' ' + resultado[0].sobrenome
+    }
 }

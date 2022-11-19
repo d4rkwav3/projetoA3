@@ -68,6 +68,11 @@ servico.post('/update', async (req, res) => {
     return res.status(201).send({msg: "Dados Atualizados com Sucesso"})
 })
 
+servico.get('/psicoInfo', async (req, res) => {
+    console.log(req.query)
+    let resultado = await db.getPsicoInfo(req.query.crp)
+    return res.status(200).json(resultado)
+})
 servico.listen(porta, () => {
     console.log(msg)
 })

@@ -5,6 +5,8 @@
 
 <mat-progress-spinner *ngIf="loading" value="50" mode="indeterminate"></mat-progress-spinner>
 
+<h3 *ngIf="!agendamentosRecentes">Você não possuí nenhuma sessão agendada no momento.</h3>
+
 <div *ngIf="agendamentosRecentes">
     <mat-card *ngFor="let ag of agendamentosRecentes">
         <mat-card-header>
