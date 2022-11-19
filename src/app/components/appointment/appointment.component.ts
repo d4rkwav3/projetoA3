@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Moment } from 'moment';
 import { Appointment } from 'src/app/models/appointment.model';
 import { User } from 'src/app/models/user.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
@@ -13,6 +14,8 @@ export class AppointmentComponent implements OnInit {
     constructor(private ls: LoginService, private aps: AppointmentsService) {}
 
     ngOnInit(): void {
+        this.hoje = new Date()
+        this.validador = new Date(this.hoje.setDate(this.hoje.getDate() + 1));
         this.ls.setActiveRoute('appointment');
         console.log('rota ativa: appointment');
         //this.user = this.ls.getUser();
@@ -26,7 +29,14 @@ export class AppointmentComponent implements OnInit {
     }
 
     user: User = {login: '', senha: '', id: 0, email: '', dataNascimento: '', nome: '', sobrenome: '', telefone: '', endereco: '', cidade: '', cep: '', tipo: 'paciente', paciente: {cpf: '012345678914', usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.0, responsavel: null}};
+
+    hoje!: Date;
+    validador!: Date;
     psico!: string;
+    data!: Moment;
+    hora!: Date;
+    local!: string;
+
     appointments?: Appointment[] = [
         {
             id: 1,
@@ -89,5 +99,10 @@ export class AppointmentComponent implements OnInit {
             this.aps.deleteAppointment(id);
             this.remover(id);
         }
+    }
+
+    agendar() :void {
+        this.data.format('DD/MM/YYY')
+        console.log(this.data.toJSON());
     }
 }
