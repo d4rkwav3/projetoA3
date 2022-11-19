@@ -45,6 +45,10 @@ export class UserDataComponent implements OnInit {
     idade!: string;
 
     salvar(): void {
-        this.ud.updateUserInfo(this.user, this.userData);
+        if (this.userData) {
+            this.ud.updateUserInfo(this.user, this.userData);
+        } else if (this.psicoData) {
+            this.ud.updateUserInfo(this.user, undefined, this.psicoData);
+        }
     }
 }

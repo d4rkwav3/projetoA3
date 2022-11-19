@@ -1,6 +1,7 @@
 import mysql from 'mysql2/promise'
 import { Usuario } from '../models/usuario.mjs'
 import { Paciente } from '../models/paciente.mjs'
+import { Psicologo } from '../models/psicologo.mjs'
 
 export default class Database {
 
@@ -74,7 +75,7 @@ export default class Database {
         let [resultado] = await conexao.execute(statement, [user_id], (err, results) => {})
         conexao.end()
 
-        if (resultado.length === 1) {
+        if (table === "Paciente" && resultado.length === 1) {
             let paciente = new Paciente(
                 resultado[0].cpf,
                 resultado[0].usuario_id,
@@ -83,6 +84,15 @@ export default class Database {
                 resultado[0].responsavel
             )
             return paciente
+        } else if (table === "Psicologo" && resultado.length === 1) {
+            let psicologo = new Psicologo(
+                resultado[0].crp,
+                resultado[0].cpf,
+                resultado[0].usuario_id,
+                resultado[0].titulacao,
+                resultado[0].especialidade
+            )
+            return psicologo
         } else {
             return null
         }
@@ -94,5 +104,39 @@ export default class Database {
         let [resultado] = await conexao.execute(statement, [paciente_id, date_now], (err, results) => {})
         conexao.end()
         return resultado
+    }
+
+    async getNextSessions(psicologo_id, date_now) {
+        let statement = "SELECT * FROM Agendamento WHERE psicologo_crp = ? AND data_hora > ? ORDER BY data_hora ASC LIMIT 6"
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, [psicologo_id, date_now], (err, results) => {})
+        conexao.end()
+        return resultado
+    }
+
+    async updateUserData(table, data) {
+        if (table === 'Paciente') {
+            let s1 = 'UPDATE Usuario, ' + table
+            let s2 = ' SET email = ?, telefone = ?, endereco = ?, cidade = ?, cep = ?, responsavel = ?' 
+            let s3 = ' WHERE Usuario.id = ? AND Paciente.usuario_id = ?'
+            let statement = s1 + s2 + s3
+            let conexao = await mysql.createConnection(this.credentials)
+            let [resultado] = await conexao.execute(statement, [
+                data.email, data.telefone, data.endereco, data.cidade, data.cep, data.paciente.responsavel, data.id, data.paciente.usuario_id], 
+                (err, results) => {})
+            conexao.end()
+            return resultado
+        } else if (table === 'Psicologo') {
+            let s1 = 'UPDATE Usuario, ' + table
+            let s2 = ' SET email = ?, telefone = ?, endereco = ?, cidade = ?, cep = ?, titulacao = ?, especialidade = ?' 
+            let s3 = ' WHERE Usuario.id = ? AND Psicologo.usuario_id = ?'
+            let statement = s1 + s2 + s3
+            let conexao = await mysql.createConnection(this.credentials)
+            let [resultado] = await conexao.execute(statement, [
+                data.email, data.telefone, data.endereco, data.cidade, data.cep, data.psico.titulacao, data.psico.especialidade, data.id, data.psico.usuario_id], 
+                (err, results) => {})
+            conexao.end()
+            return resultado
+        }
     }
 }

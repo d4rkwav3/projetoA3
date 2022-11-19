@@ -4,4 +4,5 @@ export interface Appointment {
     sala: string;
     paciente_id: string;
     sessao_id: number | null;
+    psicologo_crp: number;
 }

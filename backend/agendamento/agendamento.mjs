@@ -20,19 +20,24 @@ const eventUrl = "http://localhost:9900/eventos"
 
 servico.get("/agendamentos", async (req, res) => {
     console.log(req.query)
-    if (req.query.paciente_id !== undefined) {
+    if (req.query.cpf) {
         let now = moment().format("YYYY-MM-DD")
-        let resultado = await db.getNextAppointments(req.query.paciente_id, now)
-        res.status(200).send(resultado)
-    } else {
-        let resultado = await db.selectAll('Agendamento')
+        let resultado = await db.getNextAppointments(req.query.cpf, now)
         axios.post(eventUrl, {
             tipo: "Busca agendamentos",
             resultado
         })
-        console.log(msg)
-        res.send(resultado)
+        res.status(200).send(resultado)
+    } else if (req.query.psicologo_crp) {
+        let now = moment().format("YYYY-MM-DD")
+        let resultado = await db.getNextSessions(req.query.psicologo_crp, now)
+        axios.post(eventUrl, {
+            tipo: "Busca agendamentos",
+            resultado
+        })
+        res.status(200).send(resultado)
     }
+    console.log(msg)
 })
 
 servico.post("/agendamentos", async (req, res) => {

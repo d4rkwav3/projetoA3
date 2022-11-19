@@ -56,9 +56,16 @@ servico.get('/user', async (req, res) => {
 })
 
 servico.post('/update', async (req, res) => {
-    console.log(req.query)
-    console.log(req.body)
-    return res.status(201).send({msg: "É isso"})
+    console.log("Atualizando dados do usuário", req.body)
+
+    if (req.body.tipo === 'paciente') {
+        let update = await db.updateUserData('Paciente', req.body)
+        return res.status(200).send()
+    } else if (req.body.tipo === 'psicologo') {
+        let update = await db.updateUserData('Psicologo', req.body)
+        return res.status(200).send()
+    }
+    return res.status(201).send({msg: "Dados Atualizados com Sucesso"})
 })
 
 servico.listen(porta, () => {

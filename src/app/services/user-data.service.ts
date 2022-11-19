@@ -4,12 +4,13 @@ import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
 import { Psicologo } from '../models/psicologo.model';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
 })
 export class UserDataService {
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     private url: string = "http://localhost:9300/update"
 
@@ -33,12 +34,24 @@ export class UserDataService {
     }
 
     updateUserInfo(user: User, patient?: Paciente, psico?: Psicologo) :void {
-        if (patient !== undefined && psico === undefined){ 
-            let update: User = user;
-            update.paciente = patient
-            console.log(update)
-            let params = new HttpParams().append("id", update.id).append("paciente_id", update.paciente.cpf)
-            this.http.post(this.url, update, {params: params}).subscribe((res) => {console.log(res)})
+        let update!: User;
+        
+        if (user.tipo === 'paciente' && patient){ 
+            update = user;
+            update.paciente = patient;
+            this.http.post(this.url, update).subscribe((res) => {
+                console.log(res);
+                alert("Seus dados foram atualizados!");
+                this.router.navigate(['/home'])
+            });
+        } else if (user.tipo === 'psicologo' && psico) {
+            update = user;
+            update.psico = psico;
+            this.http.post(this.url, update).subscribe((res) => {
+                console.log(res);
+                alert("Seus dados foram atualizados!");
+                this.router.navigate(['/home'])
+            });
         }
     }
 }
