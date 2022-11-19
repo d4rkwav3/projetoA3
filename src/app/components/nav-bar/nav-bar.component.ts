@@ -1,6 +1,7 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
     constructor(private ls: LoginService, private router: Router) { }
 
     ngOnInit(): void {
+        this.user = {login: '', senha: '', id: 0, email: '', dataNascimento: '', nome: '', sobrenome: '', telefone: '', endereco: '', cidade: '', cep: '', tipo: 'paciente'};
         this.subscription = this.ls.getActiveRoute().subscribe((newValue) => {
             this.currentRoute = newValue;
         })
@@ -24,6 +26,7 @@ export class NavBarComponent implements OnInit, OnDestroy {
         this.subscription.unsubscribe();
     }
 
+    @Input() user!: User;
     currentRoute!: string;
     subscription!: Subscription;
 

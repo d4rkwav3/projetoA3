@@ -31,15 +31,7 @@ export class UserDataComponent implements OnInit {
 
     user!: User;
 
-    userData?: Paciente; /*
-    userData?: Paciente = {
-        cpf: '12345678910',
-        usuario_id: 1,
-        psicologo_crp: 123456,
-        valorConsulta: 100.0,
-        responsavel: '',
-    }; */
-    //psicoData: Psicologo = { crp: 123456, cpf: "38434365847", usuario_id: 2, titulacao: "Graduado em Psicologia", especialidade: "" }
+    userData?: Paciente;
     psicoData?: Psicologo;
 
     idade!: string;

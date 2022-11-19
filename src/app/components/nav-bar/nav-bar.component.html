@@ -1,7 +1,16 @@
 <button mat-raised-button routerLink="home" *ngIf="currentRoute === 'home'">Home</button>
 <button mat-stroked-button routerLink="home" *ngIf="currentRoute !== 'home'">Home</button>
-<button mat-stroked-button>Agendar uma sessão</button>
-<button mat-stroked-button>Sessões passadas</button>
+
+<button mat-raised-button *ngIf="currentRoute === 'appointment' && user.tipo === 'paciente'" routerLink="appointment">Agendar uma sessão</button>
+<button mat-stroked-button *ngIf="currentRoute !== 'appointment' && user.tipo === 'paciente'" routerLink="appointment">Agendar uma sessão</button>
+
+<button mat-raised-button *ngIf="currentRoute === 'appointment' && user.tipo === 'psicologo'">Confirmar agendamentos</button>
+<button mat-stroked-button *ngIf="currentRoute !== 'appointment' && user.tipo === 'psicologo'">Confirmar agendamentos</button>
+
+<button mat-raised-button *ngIf="currentRoute === 'sessions' && user.tipo === 'paciente'">Sessões passadas</button>
+<button mat-stroked-button *ngIf="currentRoute !== 'sessions' && user.tipo === 'paciente'">Sessões passadas</button>
+
 <button mat-raised-button routerLink="userdata" *ngIf="currentRoute === 'userdata'">Seus dados</button>
 <button mat-stroked-button routerLink="userdata" *ngIf="currentRoute !== 'userdata'">Seus dados</button>
+
 <button mat-stroked-button (click)="onLogOut()">Deslogar</button>

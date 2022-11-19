@@ -41,8 +41,10 @@ CREATE TABLE Agendamento (
     data_hora DATETIME NOT NULL UNIQUE,
     sala VARCHAR(50) NOT NULL,
     paciente_id VARCHAR(11) NOT NULL,
+    psicologo_crp INT NOT NULL,
     sessao_id INT DEFAULT NULL,
-    FOREIGN KEY (paciente_id) REFERENCES Paciente(cpf)
+    FOREIGN KEY (paciente_id) REFERENCES Paciente(cpf),
+    FOREIGN KEY (psicologo_crp) REFERENCES Psicologo(crp)
 );
 
 CREATE TABLE Sessao (

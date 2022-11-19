@@ -1,0 +1,15 @@
+<div *ngIf="appointments">
+    <mat-card *ngFor="let ap of appointments">
+
+            <mat-card-title>{{ ap.data_hora | date:'dd' }} de {{ ap.data_hora | date:'MMMM'}} de {{ ap.data_hora | date:'yyyy'}}</mat-card-title>
+            <mat-card-subtitle>
+                <h3>Horário: </h3>
+                <p>{{ ap.data_hora | date:'HH:mm'}}</p>
+            </mat-card-subtitle>
+            <h3>Local:</h3>
+            <p>
+                {{ ap.sala }}
+            </p>
+            <mat-checkbox disabled [(ngModel)]="teste">confirmado</mat-checkbox>
+    </mat-card>
+</div>

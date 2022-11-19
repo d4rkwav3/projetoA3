@@ -42,8 +42,8 @@ servico.get("/agendamentos", async (req, res) => {
 
 servico.post("/agendamentos", async (req, res) => {
     let tabela = 'Agendamento'
-    let colunas = '(data_hora, sala, paciente_id)'
-    let valores = [req.query.data_hora, req.query.sala, req.query.paciente_id]
+    let colunas = '(data_hora, sala, paciente_id, psicologo_crp)'
+    let valores = [req.query.data_hora, req.query.sala, req.query.paciente_id, req.query.psicologo_crp]
     let insert = await db.insert(tabela, colunas, valores)
     axios.post(eventUrl, {
         tipo: "Novo agendamento",

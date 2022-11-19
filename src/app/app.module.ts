@@ -24,6 +24,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCheckboxModule } from '@angular/material/checkbox'; 
 
 /* Configura os pipes e datepicker para pt-br*/
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -33,6 +34,7 @@ import { registerLocaleData } from '@angular/common';
 
 /* Corrige o erro de timezone em datas necessário install ng add @angular/material-moment-adapter */
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import { AppointmentComponent } from './components/appointment/appointment.component';
 //pipes em pt-br
 registerLocaleData(ptBr)
 
@@ -43,6 +45,7 @@ registerLocaleData(ptBr)
     HomeComponent,
     NavBarComponent,
     UserDataComponent,
+    AppointmentComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ registerLocaleData(ptBr)
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormFieldModule,
-    MatMomentDateModule
+    MatMomentDateModule,
+    MatCheckboxModule
   ],
   providers: [
     // data do datepicker em pt-br

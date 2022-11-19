@@ -3,10 +3,10 @@
 
     <div class="navbar">
         <app-login (login)="onLogIn()" [hidden]="hide"></app-login> 
-        <app-nav-bar (logout)="onLogOut()" [hidden]="!hide"></app-nav-bar>
+        <app-nav-bar (logout)="onLogOut()" [hidden]="!hide" [user]="user"></app-nav-bar>
     </div>
 </mat-toolbar>
-
+<app-appointment></app-appointment>
 <router-outlet></router-outlet>
 
 <main>

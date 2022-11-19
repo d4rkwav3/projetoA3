@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void { }
 
-    user: User | undefined = undefined;
+    user!: User;
     hide: boolean = false;
 
     onLogIn(): void {
@@ -27,6 +27,6 @@ export class AppComponent implements OnInit {
     onLogOut(): void {
         console.log(this.user?.login, "deslogado")
         this.hide = false;
-        this.user = undefined;
+        //this.user = undefined;
     }
 }
