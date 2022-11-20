@@ -1,10 +1,8 @@
 export class Sessao {
-    constructor(id, obs, notas, agendamento, paciente, psicologo){
+    constructor(id, obs, notas, agendamento){
         this.id = id,
-        this.obs = obs,
+        this.observacoes = obs,
         this.notas = notas,
-        this.agendamento = agendamento,
-        this.paciente = paciente,
-        this.psicologo = psicologo
+        this.agendamento = agendamento
     }
 }

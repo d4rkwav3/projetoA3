@@ -36,10 +36,10 @@ servico.post("/eventos", (req, res) => {
         console.table(evento.insert);
     } else if (evento.tipo === eventos[3]) {
         console.log(
-            "Nova busca pela tabela de agendamento efetuada às",
+            "Nova busca pela tabela de sessões efetuada às",
             datetime
         );
-        console.table(evento.resultado);
+        console.table(evento.sessao);
     } else if (evento.tipo === eventos[4]) {
         console.log(
             "Nova sessão registrada às",

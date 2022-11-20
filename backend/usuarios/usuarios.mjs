@@ -81,6 +81,12 @@ servico.get('/nomePsico', async (req, res) => {
     return res.status(200).json(nome)
 })
 
+servico.get('/userInfo', async (req, res) => {
+    console.log(req.query)
+    let resultado = await db.getUserInfo(req.query.crp)
+    return res.status(200).send(resultado)
+})
+
 servico.listen(porta, () => {
     console.log(msg)
 })

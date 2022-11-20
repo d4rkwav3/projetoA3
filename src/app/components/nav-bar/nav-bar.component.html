@@ -7,8 +7,11 @@
 <button mat-raised-button *ngIf="currentRoute === 'appointment' && user.tipo === 'psicologo'">Confirmar agendamentos</button>
 <button mat-stroked-button *ngIf="currentRoute !== 'appointment' && user.tipo === 'psicologo'">Confirmar agendamentos</button>
 
-<button mat-raised-button *ngIf="currentRoute === 'sessions' && user.tipo === 'paciente'">Sessões passadas</button>
-<button mat-stroked-button *ngIf="currentRoute !== 'sessions' && user.tipo === 'paciente'">Sessões passadas</button>
+<button mat-raised-button routerLink="session" *ngIf="currentRoute === 'sessions' && user.tipo === 'paciente'">Sessões passadas</button>
+<button mat-stroked-button routerLink="session" *ngIf="currentRoute !== 'sessions' && user.tipo === 'paciente'">Sessões passadas</button>
+
+<button mat-raised-button routerLink="session" *ngIf="currentRoute === 'sessions' && user.tipo === 'psicologo'">Sessões passadas</button>
+<button mat-stroked-button routerLink="session" *ngIf="currentRoute !== 'sessions' && user.tipo === 'psicologo'">Sessões passadas</button>
 
 <button mat-raised-button routerLink="userdata" *ngIf="currentRoute === 'userdata'">Seus dados</button>
 <button mat-stroked-button routerLink="userdata" *ngIf="currentRoute !== 'userdata'">Seus dados</button>

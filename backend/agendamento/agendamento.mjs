@@ -4,7 +4,6 @@ import axios from 'axios'
 import moment from 'moment';
 import Database from '../models/database.mjs'
 import { config } from '../../config.mjs'
-import Agendamento from '../models/agendamento.mjs'
 
 const servico = express()
 servico.use(express.json())

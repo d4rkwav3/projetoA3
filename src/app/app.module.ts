@@ -36,6 +36,7 @@ import { registerLocaleData } from '@angular/common';
 /* Corrige o erro de timezone em datas necessário install ng add @angular/material-moment-adapter */
 import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { AppointmentComponent } from './components/appointment/appointment.component';
+import { SessionComponent } from './components/session/session.component';
 //pipes em pt-br
 registerLocaleData(ptBr)
 
@@ -47,6 +48,7 @@ registerLocaleData(ptBr)
     NavBarComponent,
     UserDataComponent,
     AppointmentComponent,
+    SessionComponent,
   ],
   imports: [
     BrowserModule,

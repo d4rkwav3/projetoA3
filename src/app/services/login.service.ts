@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
 import { Psicologo } from '../models/psicologo.model';
+import { UserInfo } from '../models/userInfo.model';
 
 @Injectable({
     providedIn: 'root',
@@ -11,14 +12,16 @@ import { Psicologo } from '../models/psicologo.model';
 export class LoginService {
     private apiLogin: string = 'http://localhost:9300/login';
     private userDataApi: string = 'http://localhost:9300/user';
-    private psicoInfo: string = 'http://localhost:9300/psicoInfo'
-    private psicoNome: string = 'http://localhost:9300/nomePsico'
-    private LoguedUser!: User;
+    private psicoInfo: string = 'http://localhost:9300/psicoInfo';
+    private psicoNome: string = 'http://localhost:9300/nomePsico';
+    private userInfo: string = 'http://localhost:9300/userInfo';
     private activeRoute: Subject<string> = new Subject<string>();
+    private LoguedUser!: User;
+    
 
     /*
     testUser: User = {
-        id: 1, nome: "Bruno", sobrenome: "Venâncio", email: "projetoA3@angular.com", login: "bvsilva", senha: "123", dataNascimento: "1990-08-29", telefone: "11987786706", endereco: "Rua dos Bobos Nº0", cidade: "São Paulo - SP", cep: "04430080", tipo: "paciente", data: {cpf: "12345678910", usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.00, responsavel: "ç"}
+        id: 1, nome: "Bruno", sobrenome: "Venâncio", email: "projetoA3@angular.com", login: "bvsilva", senha: "123", dataNascimento: "1990-08-29", telefone: "11987786706", endereco: "Rua dos Bobos Nº0", cidade: "São Paulo - SP", cep: "04430080", tipo: "paciente", paciente: {cpf: "12345678910", usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.00, responsavel: "ç"}
     }
     */
 
@@ -80,5 +83,10 @@ export class LoginService {
     getNomePsico(id: number) :Observable<string> {
         let params = new HttpParams().append('id', id);
         return this.http.get<string>(this.psicoNome, {params: params});
+    }
+
+    getUserInfo(crp: number) :Observable<UserInfo[]> {
+        let params = new HttpParams().append('crp', crp);
+        return this.http.get<UserInfo[]>(this.userInfo, { params: params })
     }
 }
