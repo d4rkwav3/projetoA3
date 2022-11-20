@@ -23,6 +23,8 @@ CREATE TABLE Psicologo (
     usuario_id INT NOT NULL,
     titulacao VARCHAR(100) NOT NULL,
     especialidade VARCHAR(100),
+    endereco VARCHAR(200) NOT NULL,
+    valor DOUBLE NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
 
@@ -119,10 +121,12 @@ INSERT INTO Usuario(
     '06755260',
     'psicologo');
 
-INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao) VALUES (
+INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, endereco, valor) VALUES (
 	'123456', 
     '12345678910', 
     2,
-    'Graduada em Psicologia');
+    'Graduada em Psicologia',
+    'Rua Teste, nº00 - Sala 00',
+    200);
     
 UPDATE Paciente SET psicologo_crp = 123456, valorConsulta = 100.00 WHERE cpf='38434365847';

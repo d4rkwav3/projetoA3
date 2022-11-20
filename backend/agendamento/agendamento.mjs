@@ -41,6 +41,7 @@ servico.get("/agendamentos", async (req, res) => {
 })
 
 servico.post("/agendamentos", async (req, res) => {
+    // console.log("Testando", req.query)
     let tabela = 'Agendamento'
     let colunas = '(data_hora, sala, paciente_id, psicologo_crp)'
     let valores = [req.query.data_hora, req.query.sala, req.query.paciente_id, req.query.psicologo_crp]

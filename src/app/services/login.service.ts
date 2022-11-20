@@ -12,6 +12,7 @@ export class LoginService {
     private apiLogin: string = 'http://localhost:9300/login';
     private userDataApi: string = 'http://localhost:9300/user';
     private psicoInfo: string = 'http://localhost:9300/psicoInfo'
+    private psicoNome: string = 'http://localhost:9300/nomePsico'
     private LoguedUser!: User;
     private activeRoute: Subject<string> = new Subject<string>();
 
@@ -71,8 +72,13 @@ export class LoginService {
         this.LoguedUser.psico = undefined;
     }
 
-    getPsicoInfo(crp: number) :Observable<string> {
-        let params = new HttpParams().append('crp', crp)
-        return this.http.get<string>(this.psicoInfo, {params: params});
+    getPsicoInfo(crp: number) :Observable<Psicologo> {
+        let params = new HttpParams().append('crp', crp);
+        return this.http.get<Psicologo>(this.psicoInfo, {params: params});
+    }
+
+    getNomePsico(id: number) :Observable<string> {
+        let params = new HttpParams().append('id', id);
+        return this.http.get<string>(this.psicoNome, {params: params});
     }
 }

@@ -4,4 +4,6 @@ export interface Psicologo {
     usuario_id: number;
     titulacao: string;
     especialidade: string;
+    atendimento :string;
+    valor: number;
 }

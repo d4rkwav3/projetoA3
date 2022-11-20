@@ -90,7 +90,9 @@ export default class Database {
                 resultado[0].cpf,
                 resultado[0].usuario_id,
                 resultado[0].titulacao,
-                resultado[0].especialidade
+                resultado[0].especialidade,
+                resultado[0].atendimento,
+                resultado[0].valor
             )
             return psicologo
         } else {
@@ -128,12 +130,12 @@ export default class Database {
             return resultado
         } else if (table === 'Psicologo') {
             let s1 = 'UPDATE Usuario, ' + table
-            let s2 = ' SET email = ?, telefone = ?, endereco = ?, cidade = ?, cep = ?, titulacao = ?, especialidade = ?' 
+            let s2 = ' SET email = ?, telefone = ?, endereco = ?, cidade = ?, cep = ?, titulacao = ?, especialidade = ?, atendimento = ?, valor = ?' 
             let s3 = ' WHERE Usuario.id = ? AND Psicologo.usuario_id = ?'
             let statement = s1 + s2 + s3
             let conexao = await mysql.createConnection(this.credentials)
             let [resultado] = await conexao.execute(statement, [
-                data.email, data.telefone, data.endereco, data.cidade, data.cep, data.psico.titulacao, data.psico.especialidade, data.id, data.psico.usuario_id], 
+                data.email, data.telefone, data.endereco, data.cidade, data.cep, data.psico.titulacao, data.psico.especialidade, data.psico.atendimento, data.psico.valor, data.id, data.psico.usuario_id], 
                 (err, results) => {})
             conexao.end()
             return resultado
@@ -149,9 +151,17 @@ export default class Database {
     }
 
     async getPsicoInfo(crp) {
-        let statement = 'SELECT nome, sobrenome FROM Usuario RIGHT JOIN Psicologo ON crp WHERE tipo = ? AND crp = ? AND Usuario.id = Psicologo.usuario_id'
+        let statement = 'SELECT * FROM Psicologo WHERE crp = ?'
         let conexao = await mysql.createConnection(this.credentials)
-        let [resultado] = await conexao.execute(statement, ['psicologo', crp], (err, results) => {})
+        let [resultado] = await conexao.execute(statement, [crp], (err, results) => {})
+        conexao.end()
+        return resultado[0]
+    }
+
+    async getNomePsico(usuario_id) {
+        let statement = 'SELECT nome, sobrenome FROM Usuario WHERE id = ?'
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(statement, [usuario_id], (err, results) => {})
         conexao.end()
         return resultado[0].nome + ' ' + resultado[0].sobrenome
     }

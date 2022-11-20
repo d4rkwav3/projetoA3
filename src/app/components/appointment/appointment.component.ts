@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Moment } from 'moment';
+import { NgForm } from '@angular/forms';
+// import { Moment } from 'moment';
 import { Appointment } from 'src/app/models/appointment.model';
+import { Psicologo } from 'src/app/models/psicologo.model';
 import { User } from 'src/app/models/user.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { LoginService } from 'src/app/services/login.service';
@@ -18,26 +20,33 @@ export class AppointmentComponent implements OnInit {
         this.validador = new Date(this.hoje.setDate(this.hoje.getDate() + 1));
         this.ls.setActiveRoute('appointment');
         console.log('rota ativa: appointment');
-        //this.user = this.ls.getUser();
-        //this.appointments = this.aps.getCurrentAppointments();
+        this.user = this.ls.getUser();
+        this.appointments = this.aps.getCurrentAppointments();
         if (this.user.paciente) {
             this.ls.getPsicoInfo(this.user.paciente.psicologo_crp).subscribe((data) => {
-                console.log(data)
+                // console.log(data)
                 this.psico = data;
+                this.ls.getNomePsico(data.usuario_id).subscribe((res) => {
+                    // console.log(res)
+                    this.nomePsico = res;
+                })
             })
         }
     }
 
-    user: User = {login: '', senha: '', id: 0, email: '', dataNascimento: '', nome: '', sobrenome: '', telefone: '', endereco: '', cidade: '', cep: '', tipo: 'paciente', paciente: {cpf: '012345678914', usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.0, responsavel: null}};
+    user!: User; /*= {login: '', senha: '', id: 0, email: '', dataNascimento: '', nome: '', sobrenome: '', telefone: '', endereco: '', cidade: '', cep: '', tipo: 'paciente', paciente: {cpf: '38434365847', usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.0, responsavel: null}};*/
 
     hoje!: Date;
     validador!: Date;
-    psico!: string;
-    data!: Moment;
+    psico!: Psicologo;
+    nomePsico!: string;
+    data!: Date; //Moment;
     hora!: Date;
     local!: string;
+    // newAppointment: string[] = [];
+    online: string = 'Online via Zoom'
 
-    appointments?: Appointment[] = [
+    appointments?: Appointment[]; /*= [
         {
             id: 1,
             data_hora: '2022-11-20 10:00:00',
@@ -87,7 +96,7 @@ export class AppointmentComponent implements OnInit {
             psicologo_crp: 123,
         },
     ];
-    
+    */
     remover(id: number) :void {
         if(this.appointments) {
             this.appointments = this.appointments.filter(appointment => appointment.id !== id);
@@ -99,10 +108,17 @@ export class AppointmentComponent implements OnInit {
             this.aps.deleteAppointment(id);
             this.remover(id);
         }
-    }
+    }   
 
-    agendar() :void {
-        this.data.format('DD/MM/YYY')
-        console.log(this.data.toJSON());
+    agendar(form: NgForm) :void {
+        let sala: string = "";
+
+        if (form.value.local === 'presencial') sala = this.psico.atendimento;
+        else if (form.value.local === 'online') sala = this.online;
+
+        if (this.user.paciente) {
+            this.aps.addAppoitment(form.value.data.toISOString().substring(0,10) + ' ' + form.value.hora + ':00', sala, this.user.paciente?.cpf, this.psico.crp)
+            form.reset()
+        } 
     }
 }

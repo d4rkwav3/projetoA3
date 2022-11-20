@@ -60,10 +60,10 @@ servico.post('/update', async (req, res) => {
 
     if (req.body.tipo === 'paciente') {
         let update = await db.updateUserData('Paciente', req.body)
-        return res.status(200).send()
+        return res.status(200).send(update)
     } else if (req.body.tipo === 'psicologo') {
         let update = await db.updateUserData('Psicologo', req.body)
-        return res.status(200).send()
+        return res.status(200).send(update)
     }
     return res.status(201).send({msg: "Dados Atualizados com Sucesso"})
 })
@@ -71,8 +71,16 @@ servico.post('/update', async (req, res) => {
 servico.get('/psicoInfo', async (req, res) => {
     console.log(req.query)
     let resultado = await db.getPsicoInfo(req.query.crp)
-    return res.status(200).json(resultado)
+    return res.status(200).send(resultado)
 })
+
+servico.get('/nomePsico', async (req, res) => {
+    console.log(req.query)
+    let nome = await db.getNomePsico(req.query.id)
+    console.log(nome)
+    return res.status(200).json(nome)
+})
+
 servico.listen(porta, () => {
     console.log(msg)
 })

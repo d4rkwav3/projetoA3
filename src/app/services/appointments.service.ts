@@ -5,6 +5,7 @@ import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
 import { Appointment } from '../models/appointment.model';
 import { Psicologo } from '../models/psicologo.model';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root',
@@ -13,7 +14,7 @@ export class AppointmentsService {
     private appointments?: Appointment[];
     private url: string = 'http://localhost:9100/agendamentos';
 
-    constructor(private http: HttpClient) {}
+    constructor(private http: HttpClient, private router: Router) {}
 
     getAppointments(
         patient?: Paciente,
@@ -45,5 +46,14 @@ export class AppointmentsService {
         } else {
             return undefined;
         }
+    }
+
+    addAppoitment(data_hora: string, local: string, patient: string, psico: number) :void {
+        let params = new HttpParams().append('data_hora', data_hora).append('sala', local).append('paciente_id', patient).append('psicologo_crp', psico);
+        this.http.post(this.url, {}, {params: params}).subscribe((data) => {
+            // console.log(data);
+            alert("Seu agendamento foi registrado!");
+            this.router.navigate(['/home'])
+        })
     }
 }
