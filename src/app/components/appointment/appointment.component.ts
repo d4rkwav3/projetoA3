@@ -46,7 +46,7 @@ export class AppointmentComponent implements OnInit {
     // newAppointment: string[] = [];
     online: string = 'Online via Zoom'
 
-    appointments?: Appointment[]; /*= [
+    appointments: Appointment[] = []; /*= [
         {
             id: 1,
             data_hora: '2022-11-20 10:00:00',

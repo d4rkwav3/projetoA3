@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     providedIn: 'root',
 })
 export class AppointmentsService {
-    private appointments?: Appointment[];
+    private appointments: Appointment[] = [];
     private url: string = 'http://localhost:9100/agendamentos';
 
     constructor(private http: HttpClient, private router: Router) {}
@@ -40,12 +40,8 @@ export class AppointmentsService {
         this.http.delete(this.url, {params: params}).subscribe();
     }
 
-    getCurrentAppointments() :Appointment[] | undefined {
-        if(this.appointments) {
-            return this.appointments;
-        } else {
-            return undefined;
-        }
+    getCurrentAppointments() :Appointment[] {
+        return this.appointments;
     }
 
     addAppoitment(data_hora: string, local: string, patient: string, psico: number) :void {

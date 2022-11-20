@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
     }
     loading: boolean = false;
 
-    agendamentosRecentes?: Appointment[]
+    agendamentosRecentes: Appointment[] = [];
 
     loguedUser!: User;
 }

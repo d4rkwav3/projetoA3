@@ -1,7 +1,8 @@
 <h2>Bem-vindo {{ loguedUser.nome }} {{ loguedUser.sobrenome }}</h2>
 <!--<h2>Bem-vindo Usuário anônimo</h2>-->
 
-<h3 *ngIf="agendamentosRecentes">Próximas sessões:</h3>
+<h3 *ngIf="agendamentosRecentes.length > 0">Próximas sessões:</h3>
+<h3 *ngIf="agendamentosRecentes.length === 0">Nenhuma sessão agendada</h3>
 
 <mat-progress-spinner *ngIf="loading" value="50" mode="indeterminate"></mat-progress-spinner>
 

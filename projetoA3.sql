@@ -23,7 +23,7 @@ CREATE TABLE Psicologo (
     usuario_id INT NOT NULL,
     titulacao VARCHAR(100) NOT NULL,
     especialidade VARCHAR(100),
-    endereco VARCHAR(200) NOT NULL,
+    atendimento VARCHAR(200) NOT NULL,
     valor DOUBLE NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES Usuario(id)
 );
@@ -121,7 +121,7 @@ INSERT INTO Usuario(
     '06755260',
     'psicologo');
 
-INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, endereco, valor) VALUES (
+INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, atendimento, valor) VALUES (
 	'123456', 
     '12345678910', 
     2,

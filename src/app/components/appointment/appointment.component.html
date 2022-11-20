@@ -24,7 +24,8 @@
     </form>
 </div>
 
-<h3 *ngIf="appointments" class="sessoes1">Sessões já agendadas:</h3>
+<h3 *ngIf="appointments.length > 0" class="sessoes1">Sessões já agendadas:</h3>
+<h3 *ngIf="appointments.length === 0" class="sessoes1">Nenhuma sessão agendada.</h3>
 
 <div *ngIf="appointments" class="sessoes2">
     <mat-card *ngFor="let ap of appointments">
