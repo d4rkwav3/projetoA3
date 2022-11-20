@@ -168,13 +168,13 @@ export default class Database {
 
     async getSessions(tipo, id, date) {
         if (tipo === 'paciente') {
-            let sessao = 'SELECT Agendamento.id as a_id, data_hora, sala, Sessao.id as s_id, observacoes, notas, Agendamento.paciente_id, Agendamento.psicologo_crp FROM Agendamento, Sessao WHERE sessao_id IS NOT NULL AND sessao_id = Sessao.id AND Sessao.paciente_id = ? AND data_hora < ? ORDER BY data_hora DESC'
+            let sessao = 'SELECT Agendamento.id as a_id, data_hora, sala, Sessao.id as s_id, nome, sobrenome, observacoes, notas, Agendamento.paciente_id, Agendamento.psicologo_crp FROM Agendamento, Sessao WHERE sessao_id IS NOT NULL AND sessao_id = Sessao.id AND Sessao.paciente_id = ? AND data_hora < ? ORDER BY data_hora DESC'
             let conexao = await mysql.createConnection(this.credentials)
             let [sessoes] = await conexao.execute(sessao, [id, date], (err, results) => {})
             conexao.end()
             return sessoes
         } else if (tipo === 'psicologo') {
-            let sessao = 'SELECT Agendamento.id as a_id, data_hora, sala, Sessao.id as s_id, observacoes, notas, Agendamento.paciente_id, Agendamento.psicologo_crp FROM Agendamento, Sessao WHERE sessao_id IS NOT NULL AND sessao_id = Sessao.id AND Sessao.psicologo_id = ? AND data_hora < ? ORDER BY data_hora DESC'
+            let sessao = 'SELECT Agendamento.id as a_id, data_hora, sala, Sessao.id as s_id, nome, sobrenome, observacoes, notas, Agendamento.paciente_id, Agendamento.psicologo_crp FROM Agendamento, Sessao WHERE sessao_id IS NOT NULL AND sessao_id = Sessao.id AND Sessao.psicologo_id = ? AND data_hora < ? ORDER BY data_hora DESC'
             let conexao = await mysql.createConnection(this.credentials)
             let [sessoes] = await conexao.execute(sessao, [id, date], (err, results) => {})
             conexao.end()

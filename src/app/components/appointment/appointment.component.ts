@@ -34,8 +34,7 @@ export class AppointmentComponent implements OnInit {
         }
     }
 
-    user!: User; /*= {login: '', senha: '', id: 0, email: '', dataNascimento: '', nome: '', sobrenome: '', telefone: '', endereco: '', cidade: '', cep: '', tipo: 'paciente', paciente: {cpf: '38434365847', usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.0, responsavel: null}};*/
-
+    user!: User;
     hoje!: Date;
     validador!: Date;
     psico!: Psicologo;
@@ -43,60 +42,10 @@ export class AppointmentComponent implements OnInit {
     data!: Date; //Moment;
     hora!: Date;
     local!: string;
-    // newAppointment: string[] = [];
     online: string = 'Online via Zoom'
 
-    appointments: Appointment[] = []; /*= [
-        {
-            id: 1,
-            data_hora: '2022-11-20 10:00:00',
-            sala: 'Online via Zoom',
-            paciente_id: '38434365847',
-            sessao_id: null,
-            psicologo_crp: 123,
-        },
-        {
-            id: 2,
-            data_hora: '2022-11-22 18:00:00',
-            sala: 'Online via Zoom',
-            paciente_id: '38434365847',
-            sessao_id: null,
-            psicologo_crp: 123,
-        },
-        {
-            id: 3,
-            data_hora: '2022-11-25 15:00:00',
-            sala: 'Avendia Paulista, nº 2073 - 15º Andar, Sala 5',
-            paciente_id: '38434365847',
-            sessao_id: null,
-            psicologo_crp: 123,
-        },
-        {
-            id: 4,
-            data_hora: '2022-11-27 19:00:00',
-            sala: 'Online via Zoom',
-            paciente_id: '38434365847',
-            sessao_id: null,
-            psicologo_crp: 123,
-        },
-        {
-            id: 5,
-            data_hora: '2022-11-29 09:15:00',
-            sala: 'Online via Zoom',
-            paciente_id: '38434365847',
-            sessao_id: null,
-            psicologo_crp: 123,
-        },
-        {
-            id: 6,
-            data_hora: '2022-12-02 16:30:00',
-            sala: 'Online via Zoom',
-            paciente_id: '38434365847',
-            sessao_id: null,
-            psicologo_crp: 123,
-        },
-    ];
-    */
+    appointments: Appointment[] = [];
+
     remover(id: number) :void {
         if(this.appointments) {
             this.appointments = this.appointments.filter(appointment => appointment.id !== id);

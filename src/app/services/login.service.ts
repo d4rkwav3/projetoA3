@@ -4,7 +4,6 @@ import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
 import { Psicologo } from '../models/psicologo.model';
-import { UserInfo } from '../models/userInfo.model';
 
 @Injectable({
     providedIn: 'root',
@@ -85,8 +84,4 @@ export class LoginService {
         return this.http.get<string>(this.psicoNome, {params: params});
     }
 
-    getUserInfo(crp: number) :Observable<UserInfo[]> {
-        let params = new HttpParams().append('crp', crp);
-        return this.http.get<UserInfo[]>(this.userInfo, { params: params })
-    }
 }

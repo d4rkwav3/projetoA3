@@ -7,11 +7,11 @@
                     {{ sessao.agendamento.data_hora | date:'MMMM'}} de 
                     {{ sessao.agendamento.data_hora | date:'yyyy'}}
                 </mat-panel-title>
-                <!--
-                <mat-panel-description *ngIf="sessao.agendamento.paciente_id">
-                    {{ sessao.agendamento.paciente_id }}
+                
+                <mat-panel-description *ngIf="user.tipo === 'psicologo'">
+                    {{ sessao.nome }} {{ sessao.sobrenome }}
                 </mat-panel-description>
-                -->
+                
             </mat-expansion-panel-header>
 
             <h4 *ngIf="user.tipo === 'psicologo'">Observações</h4>

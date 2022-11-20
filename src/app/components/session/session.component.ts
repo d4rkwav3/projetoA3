@@ -5,7 +5,6 @@ import { Psicologo } from 'src/app/models/psicologo.model';
 import { Session } from 'src/app/models/session.model';
 import { LoginService } from 'src/app/services/login.service';
 import { SessionService } from 'src/app/services/session.service';
-import { UserInfo } from 'src/app/models/userInfo.model';
 
 @Component({
     selector: 'app-session',
@@ -29,10 +28,6 @@ export class SessionComponent implements OnInit {
             this.psicoData = this.user.psico;
             this.ss.getSessions(this.user.tipo, undefined, this.psicoData?.crp).subscribe((sessoes) => {
                 this.sessoes = sessoes;
-                this.ls.getUserInfo(this.user.psico!.crp).subscribe((data) => {
-                    console.log(data);
-                    this.userInfo = data;
-                })
             });
         }
     }
@@ -40,6 +35,6 @@ export class SessionComponent implements OnInit {
     user!: User; 
     userData?: Paciente;
     psicoData?: Psicologo;
-    userInfo!: UserInfo[];
     sessoes: Session[] = []; 
+    
 }

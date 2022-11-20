@@ -41,6 +41,8 @@ servico.get('/sessao', async (req, res) => {
             // console.log(element)
             resultado.push(new Sessao(
                 element.s_id,
+                element.nome,
+                element.sobrenome,
                 element.observacoes,
                 element.notas,
                 new Agendamento(element.a_id,
@@ -64,6 +66,8 @@ servico.get('/sessao', async (req, res) => {
             // console.log(element)
             resultado.push(new Sessao(
                 element.s_id,
+                element.nome,
+                element.sobrenome,
                 element.observacoes,
                 element.notas,
                 new Agendamento(element.a_id,

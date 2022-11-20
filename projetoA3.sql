@@ -51,6 +51,8 @@ CREATE TABLE Agendamento (
 
 CREATE TABLE Sessao (
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(200) NOT NULL,
     observacoes TEXT,
     notas TEXT,
     agendamento_id INT NOT NULL,
