@@ -189,4 +189,12 @@ export default class Database {
         conexao.end()
         return resultado
     }
+
+    async getPsico() {
+        let psicos = 'SELECT nome, sobrenome, crp, titulacao, especialidade, atendimento, valor FROM Usuario, Psicologo WHERE id = usuario_id'
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(psicos, [], (err, results) => {})
+        conexao.end()
+        return resultado
+    }
 }

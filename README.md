@@ -20,8 +20,8 @@ Sistema de agendamento de sessões para uma clínica psicológica.
 - [X] Agendamento de sessões
 - [ ] Inserção/Visualização de notas da sessão
 - [X] Persistência de dados (MySQL/MariaDB)
-- [ ] Histórico de sessões
-- [ ] Observações visíveis apenas para psicólogos
+- [X] Histórico de sessões
+- [X] Observações visíveis apenas para psicólogos
 - [X] Tela de login
 
 ## Linguagens e ferramentas utilizadas

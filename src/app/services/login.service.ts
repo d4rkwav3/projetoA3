@@ -4,24 +4,20 @@ import { Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { Paciente } from '../models/paciente.model';
 import { Psicologo } from '../models/psicologo.model';
+import { PsicoInfo } from '../models/psicoInfo.model';
 
 @Injectable({
     providedIn: 'root',
 })
 export class LoginService {
+
     private apiLogin: string = 'http://localhost:9300/login';
     private userDataApi: string = 'http://localhost:9300/user';
     private psicoInfo: string = 'http://localhost:9300/psicoInfo';
     private psicoNome: string = 'http://localhost:9300/nomePsico';
+    private selectPsico: string = 'http://localhost:9300/psico';
     private activeRoute: Subject<string> = new Subject<string>();
     private LoguedUser!: User;
-    
-
-    /*
-    testUser: User = {
-        id: 1, nome: "Bruno", sobrenome: "Venâncio", email: "projetoA3@angular.com", login: "bvsilva", senha: "123", dataNascimento: "1990-08-29", telefone: "11987786706", endereco: "Rua dos Bobos Nº0", cidade: "São Paulo - SP", cep: "04430080", tipo: "paciente", paciente: {cpf: "12345678910", usuario_id: 1, psicologo_crp: 123456, valorConsulta: 100.00, responsavel: "ç"}
-    }
-    */
 
     constructor(private http: HttpClient) {}
 
@@ -83,4 +79,7 @@ export class LoginService {
         return this.http.get<string>(this.psicoNome, {params: params});
     }
 
+    selectPsicos() :Observable<PsicoInfo[]> {
+        return this.http.get<PsicoInfo[]>(this.selectPsico)
+    }
 }

@@ -15,5 +15,5 @@ export interface User {
     cep: string;
     tipo: string;
     paciente?: Paciente;
-    psico?:Psicologo;
+    psico?: Psicologo;
 }

@@ -87,6 +87,11 @@ servico.get('/userInfo', async (req, res) => {
     return res.status(200).send(resultado)
 })
 
+servico.get('/psico', async (req, res) => {
+    let psicos = await db.getPsico()
+    return res.status(200).send(psicos)
+})
+
 servico.listen(porta, () => {
     console.log(msg)
 })
