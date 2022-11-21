@@ -92,6 +92,24 @@ servico.get('/psico', async (req, res) => {
     return res.status(200).send(psicos)
 })
 
+servico.post('/add', async (req, res) => {
+    console.log(req.body)
+    let tabela1 = 'Usuario'
+    let colunas1 = '(login, senha, email, dataNascimento, nome, sobrenome, telefone, endereco, cidade, cep, tipo)'
+    let valores1 = [req.body.login, req.body.senha, req.body.email, req.body.dataNascimento, req.body.nome, req.body.sobrenome, req.body.telefone, req.body.endereco, req.body.cidade, req.body.cep, req.body.tipo]
+
+    let user = await db.insert(tabela1, colunas1, valores1)
+    console.log("Usuário inserido com sucesso", user)
+
+    let tabela2 = "Paciente"
+    let colunas2 = '(cpf, usuario_id, psicologo_crp, valorConsulta, responsavel)'
+    let valores2 = [req.body.paciente.cpf, user.insertId, req.body.paciente.psicologo_crp, req.body.paciente.valorConsulta, req.body.paciente.responsavel]
+
+    let patient = await db.insert(tabela2, colunas2, valores2)
+    console.log("Paciente inserido com sucesso", patient)
+    return res.status(201).send({msg: "ok"})
+})
+
 servico.listen(porta, () => {
     console.log(msg)
 })

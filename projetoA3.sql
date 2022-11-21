@@ -1,4 +1,4 @@
-	CREATE DATABASE projetoA3;
+CREATE DATABASE projetoA3;
 
 USE projetoA3;
 

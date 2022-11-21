@@ -13,6 +13,7 @@ export class UserDataService {
     constructor(private http: HttpClient, private router: Router) {}
 
     private url: string = "http://localhost:9300/update"
+    private add: string = "http://localhost:9300/add"
 
     private currentUserData!: User;
     private currentPatientData?: Paciente;
@@ -53,5 +54,9 @@ export class UserDataService {
                 this.router.navigate(['/home'])
             });
         }
+    }
+
+    addUser(user: User) :Observable<any> {
+        return this.http.post<any>(this.add, user)
     }
 }

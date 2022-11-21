@@ -6,9 +6,9 @@ h3 {
     margin-bottom: 1rem;
 }
 .mat-card {
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
+    justify-content: center;
+    width: 540px;
+    height: 415px;
     background-color: #3f51b5;
     color: white;
 }
@@ -38,11 +38,22 @@ input {
     caret-color: white;
 }
 .mat-form-field {
-    width: 500px;
+    width: 540px;
+}
+#login {
+    display: inline-block;
+    width: 265px;
+    margin-top: 2px;
+}
+#senha {
+    display: inline-block;
+    margin-left: 10px;
+    width: 265px;
 }
 #nome {
     display: inline-block;
-    width: 150px;
+    width: 190px;
+    margin-top: 5px;
 }
 #sobrenome {
     margin-left: 10px;
@@ -52,12 +63,8 @@ input {
 #dataNascimento {
     margin-left: 10px;
     display: inline-block;
-    width: 125px;
-}
-#idade {
-    display: inline-block;
-    width: 50px;
-    margin-left: 10px;
+    width: 165px;
+    
 }
 #telefone {
     display: inline-block;
@@ -71,25 +78,29 @@ input {
 #endereço {
     display: inline-block;
     width: 255px;
+    margin-top: 7px;
+
 }
 #cidade {
     display: inline-block;
-    width: 145px;
+    width: 165px;
     margin-left: 10px;
 }
 #cep {
     display: inline-block;
-    width: 80px;
+    width: 100px;
     margin-left: 10px;
 }
 #cpf {
     display: inline-block;
-    width: 100px;
+    width: 140px;
+    margin-top: 5px;
 }
 #responsavel {
     margin-left: 10px;
     display: inline-block;
     width: 390px;
+    margin-top: 5px;
 }
 #titulacao {
     margin-left: 10px;
@@ -117,4 +128,31 @@ input {
 }
 ::ng-deep .mat-select-value{
     color: white !important;
+}
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#psico {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 2rem;
+    width: 300px;
+}
+.psicoInfo {
+    margin-bottom: -1rem;
+}
+h5 {
+    margin-top: 1rem;
+    margin-bottom: -1rem;
+}
+.mat-hint {
+    color: white;
+}
+#select {
+    margin-top: 1rem;
 }
