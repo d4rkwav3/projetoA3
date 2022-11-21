@@ -44,8 +44,8 @@ export class AppointmentsService {
         return this.appointments;
     }
 
-    addAppoitment(data_hora: string, local: string, patient: string, psico: number) :void {
-        let params = new HttpParams().append('data_hora', data_hora).append('sala', local).append('paciente_id', patient).append('psicologo_crp', psico);
+    addAppoitment(nome: string, sobrenome: string, data_hora: string, local: string, patient: string, psico: number) :void {
+        let params = new HttpParams().append('nome', nome).append('sobrenome', sobrenome).append('data_hora', data_hora).append('sala', local).append('paciente_id', patient).append('psicologo_crp', psico);
         this.http.post(this.url, {}, {params: params}).subscribe((data) => {
             // console.log(data);
             alert("Seu agendamento foi registrado!");

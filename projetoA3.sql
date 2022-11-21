@@ -40,6 +40,8 @@ CREATE TABLE Paciente (
 
 CREATE TABLE Agendamento (
 	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    sobrenome VARCHAR(200) NOT NULL,
     data_hora DATETIME NOT NULL UNIQUE,
     sala VARCHAR(50) NOT NULL,
     paciente_id VARCHAR(11) NOT NULL,

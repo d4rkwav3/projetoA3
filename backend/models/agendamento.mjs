@@ -1,6 +1,8 @@
 export class Agendamento {
-    constructor(id, data, sala, paciente, sessao, psico) {
+    constructor(id, nome, sobrenome, data, sala, paciente, sessao, psico) {
         this.id = id
+        this.nome = nome,
+        this.sobrenome = sobrenome,
         this.data_hora = data
         this.sala = sala
         this.paciente_id = paciente,

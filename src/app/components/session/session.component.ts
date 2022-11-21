@@ -27,6 +27,7 @@ export class SessionComponent implements OnInit {
         } else if (this.user.psico) {
             this.psicoData = this.user.psico;
             this.ss.getSessions(this.user.tipo, undefined, this.psicoData?.crp).subscribe((sessoes) => {
+                console.log(sessoes)
                 this.sessoes = sessoes;
             });
         }

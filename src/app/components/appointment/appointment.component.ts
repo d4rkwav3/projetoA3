@@ -59,14 +59,14 @@ export class AppointmentComponent implements OnInit {
         }
     }   
 
-    agendar(form: NgForm) :void {
+    agendar(form: NgForm, user: User) :void {
         let sala: string = "";
 
         if (form.value.local === 'presencial') sala = this.psico.atendimento;
         else if (form.value.local === 'online') sala = this.online;
 
         if (this.user.paciente) {
-            this.aps.addAppoitment(form.value.data.toISOString().substring(0,10) + ' ' + form.value.hora + ':00', sala, this.user.paciente?.cpf, this.psico.crp)
+            this.aps.addAppoitment(user.nome, user.sobrenome, form.value.data.toISOString().substring(0,10) + ' ' + form.value.hora + ':00', sala, this.user.paciente?.cpf, this.psico.crp)
             form.reset()
         } 
     }

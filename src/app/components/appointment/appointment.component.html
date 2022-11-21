@@ -1,5 +1,5 @@
 <div id="novo">
-    <form (submit)="agendar(loginForm)" #loginForm="ngForm">
+    <form (submit)="agendar(loginForm, user)" #loginForm="ngForm">
         <mat-card id="agenda">
             <mat-card-title>Agende uma sessão:</mat-card-title>
             <mat-card-subtitle *ngIf="psico">Psicologo(a): {{ nomePsico }}</mat-card-subtitle>
