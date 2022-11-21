@@ -13,7 +13,6 @@ export class LoginService {
     private userDataApi: string = 'http://localhost:9300/user';
     private psicoInfo: string = 'http://localhost:9300/psicoInfo';
     private psicoNome: string = 'http://localhost:9300/nomePsico';
-    private userInfo: string = 'http://localhost:9300/userInfo';
     private activeRoute: Subject<string> = new Subject<string>();
     private LoguedUser!: User;
     

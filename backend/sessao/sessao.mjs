@@ -93,8 +93,8 @@ servico.get('/sessao', async (req, res) => {
 
 servico.post('/sessao', async (req, res) => {
     let tabela = 'Sessao'
-    let colunas = '(observacoes, notas, agendamento_id, paciente_id, psicologo_id)'
-    let valores = [req.query.observacoes, req.query.notas, req.query.agendamento_id, req.query.paciente_id, req.query.psicologo_id]
+    let colunas = '(nome, sobrenome, observacoes, notas, agendamento_id, paciente_id, psicologo_id)'
+    let valores = [req.query.nome, req.query.sobrenome, req.query.observacoes, req.query.notas, req.query.agendamento_id, req.query.paciente_id, req.query.psicologo_id]
     let insert = await db.insert(tabela, colunas, valores)
     axios.post(eventUrl, {
         tipo: "Sessão realizada",
