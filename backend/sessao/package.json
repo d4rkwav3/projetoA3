@@ -1,6 +1,6 @@
 {
   "name": "sessao",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Microsserviço que cria e gerencia Sessões",
   "main": "sessao.mjs",
   "scripts": {

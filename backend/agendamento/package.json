@@ -1,6 +1,6 @@
 {
   "name": "agendamento",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Microsserviço que gerencia agendamento de sessões",
   "main": "agendamento.mjs",
   "scripts": {
