@@ -27,6 +27,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio'; 
 import { MatSelectModule } from '@angular/material/select';
+import { MatDividerModule } from '@angular/material/divider';
 
 /* Configura os pipes e datepicker para pt-br*/
 import { MAT_DATE_LOCALE } from '@angular/material/core';
@@ -39,6 +40,7 @@ import { MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/m
 import { AppointmentComponent } from './components/appointment/appointment.component';
 import { SessionComponent } from './components/session/session.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
+import { RegisterComponent } from './components/register/register.component';
 //pipes em pt-br
 registerLocaleData(ptBr)
 
@@ -52,6 +54,7 @@ registerLocaleData(ptBr)
     AppointmentComponent,
     SessionComponent,
     NewUserComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +75,8 @@ registerLocaleData(ptBr)
     MatMomentDateModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDividerModule
   ],
   providers: [
     // data do datepicker em pt-br

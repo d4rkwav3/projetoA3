@@ -121,7 +121,7 @@ input {
     justify-content: flex-end;
 }
 ::ng-deep .mat-form-field-type-mat-native-select .mat-form-field-disabled .mat-form-field-infix::after, .mat-input-element:disabled {
-    color: #888888 !important;
+    color: white !important;
 }
 ::ng-deep .mat-select-arrow {
     color: white;

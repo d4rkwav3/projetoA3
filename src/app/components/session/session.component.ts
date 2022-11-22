@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { Paciente } from 'src/app/models/paciente.model';
 import { Psicologo } from 'src/app/models/psicologo.model';
@@ -38,4 +38,7 @@ export class SessionComponent implements OnInit {
     psicoData?: Psicologo;
     sessoes: Session[] = []; 
     
+    ngOnDestroy() :void {
+        this.sessoes = [];
+    }
 }

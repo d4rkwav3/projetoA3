@@ -4,7 +4,7 @@
     margin-left: auto;
     margin-right: auto;
 }
-h4 {
+h2, h4 {
     font-weight: bold;
 }
 .mat-expansion-panel {
@@ -18,4 +18,8 @@ h4 {
 ::ng-deep .mat-expansion-indicator::after,
 .mat-expansion-panel-header-description {
     color: white;
+}
+h2 {
+    margin-top: 1rem;
+    text-align: center;
 }

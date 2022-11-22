@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { User } from './models/user.model';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
-import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -14,10 +13,13 @@ export class AppComponent implements OnInit {
 
     constructor(private router: Router, private ls: LoginService) {}
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+
+    }
 
     user!: User;
     hide: boolean = false;
+    apresentacao: boolean = false;
 
     onLogIn(): void {
         this.hide = true;

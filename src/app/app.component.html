@@ -1,22 +1,22 @@
 <mat-toolbar color="primary">
-    <h3>Clinica Psicológica</h3>
+    <h3>Clinica Psicológica Wilhelm Wundt</h3>
 
     <div class="navbar">
         <app-login (login)="onLogIn()" [hidden]="hide"></app-login> 
         <app-nav-bar (logout)="onLogOut()" [hidden]="!hide" [user]="user"></app-nav-bar>
     </div>
 </mat-toolbar>
-
+<app-register></app-register>
 <router-outlet></router-outlet>
 
-<main>
-    <h1>FrontEnd em fase de implementação</h1>
-    <h2>Em breve novidades!</h2>
-    <h3>Membros do Projeto</h3>
-    <ul>
-        <li>Bruno Venâncio de Souza e Silva - RA: 821135934</li>
-        <li>Henrick Melo Vital - RA: 821224905</li>
-        <li>Matheus Alves Navarrete Tolomei - RA: 821138944</li>
-        <li>Matheus de Souza Calou - RA: 821131367</li>
-    </ul>
+<main [hidden]="hide">
+    <mat-card>
+        <h2>Bem-vindo a Wilhelm Wundt</h2>
+        <mat-divider></mat-divider>
+        <p>
+        Somos uma clínica psicológica renomada com mais de 50 anos ajudando milhares de pessoas. Você está no nosso sistema online de cadastros e agendamentos, aqui você pode realizar um cadastro, fazer agendamentos de consultas com um profissional da sua preferência e consultar data e horário de consultas agendadas. Fazemos consultas presencialmente e online. Deseja se cadastrar? Se sim, clique no botão abaixo.
+        </p>
+        <mat-divider></mat-divider>
+        <a mat-flat-button routerLink="newuser" color="secondary">Criar cadastro</a>
+    </mat-card>
 </main>
