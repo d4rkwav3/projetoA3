@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { PsicoInfo } from 'src/app/models/psicoInfo.model';
 import { Psicologo } from 'src/app/models/psicologo.model';
 import { User } from 'src/app/models/user.model';
@@ -12,7 +13,7 @@ import { UserDataService } from 'src/app/services/user-data.service';
     styleUrls: ['./new-user.component.css'],
 })
 export class NewUserComponent implements OnInit {
-    constructor(private ls: LoginService, private ud: UserDataService) {}
+    constructor(private ls: LoginService, private ud: UserDataService, private router: Router) {}
 
     ngOnInit(): void {
         this.hoje = new Date();
@@ -89,7 +90,11 @@ export class NewUserComponent implements OnInit {
                 },
             };
             this.ud.addUser(this.newUser).subscribe((res) => {
-                console.log(res)
+                if(res.msg === 'ok') {
+                    alert("Seu cadastro foi registrado com sucesso!")
+                    form.reset()
+                    this.router.navigate(['/'])
+                }
             })
         } else { console.log("forms inválido!")}
         // form.reset()

@@ -18,17 +18,6 @@ const db = new Database(
     config.database.database)
 const msg = `Serviços de sessões rodando na porta ${porta}`
 const eventUrl = "http://localhost:9900/eventos"
-/*
-servico.get('/sessao', async (req, res) => {
-    let resultado = await db.selectAll('Sessao')
-    axios.post(eventUrl, {
-        tipo: "Busca sessões",
-        resultado
-    })
-    console.log(msg)
-    res.status(200).send(resultado)
-})
-*/
 
 servico.get('/sessao', async (req, res) => {
     console.log(req.query)
@@ -38,7 +27,7 @@ servico.get('/sessao', async (req, res) => {
         let resultado = []
         let sessao = await db.getSessions(req.query.tipo, req.query.paciente_id, hoje)
         sessao.forEach(element => {
-            // console.log(element)
+            console.log(element)
             resultado.push(new Sessao(
                 element.s_id,
                 element.nome,
