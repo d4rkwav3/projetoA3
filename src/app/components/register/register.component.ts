@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Appointment } from 'src/app/models/appointment.model';
+import { Session } from 'src/app/models/session.model';
+import { User } from 'src/app/models/user.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -11,29 +14,44 @@ import { LoginService } from 'src/app/services/login.service';
 export class RegisterComponent implements OnInit {
     constructor(private ls: LoginService, private aps: AppointmentsService) {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        this.user = this.ls.getUser();
+        this.aps.getAppointments(false , undefined, this.user.psico).subscribe((data) => {
+            this.appointments = data;
+            this.appointments.forEach(ag => {
+                this.sessao.push({
+                    id: 0,
+                    nome: ag.nome,
+                    sobrenome: ag.sobrenome,
+                    observacoes: '',
+                    notas: '',
+                    agendamento: ag
+                })
+            })
+        });
+    }
 
-    appointments: Appointment[] = [
-        {
-            id: 1,
-            nome: 'Bruno',
-            sobrenome: 'Venâncio',
-            data_hora: '2022-11-10',
-            sala: 'Online via Zoom',
-            paciente_id: '38434365847',
-            psicologo_crp: 123456,
-            sessao_id: null,
-        },
-        {
-            id: 2,
-            nome: 'Durval',
-            sobrenome: 'Guimarães',
-            data_hora: '2022-11-17',
-            sala: 'Rua Teste, nº0 - Sala 03',
-            paciente_id: '38434365847',
-            psicologo_crp: 123456,
-            sessao_id: null,
-        },
-    ];
-    remove = false;
+    user!: User; 
+    appointments: Appointment[] = []
+    sessao: Session[] = [];
+
+    arquivar(ag: Appointment) :void {
+        console.log(this.appointments.length);
+        this.aps.archive(ag.id, ag.motivo).subscribe((data) => {
+            console.log(data);
+            console.log(`Agendamento de ${ag.nome} ${ag.sobrenome} do dia ${ag.data_hora} arquivado!`);
+            this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
+            console.log(this.appointments.length);
+        })
+        // this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
+        // console.log(this.appointments.length);
+    }
+
+    registrar(ag: Appointment) :void {
+        let nova = this.sessao.find(session => session.agendamento.id === ag.id);
+        console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
+        this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
+        this.sessao = this.sessao.filter(session => session.agendamento.id !== ag.id);
+        console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
+    }
 }

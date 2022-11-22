@@ -197,4 +197,33 @@ export default class Database {
         conexao.end()
         return resultado
     }
+
+    async getPastAppointments(user, now) {
+        let paciente = ''
+        let psico = ''
+        let resultado = []
+
+        if (user.length === 11) {
+            paciente = "SELECT * FROM Agendamento WHERE paciente_id = ? AND data_hora < ? AND arquivada = FALSE ORDER BY data_hora ASC"
+            let conexao = await mysql.createConnection(this.credentials)
+            resultado = await conexao.execute(paciente, [user, now], (err, results) => {})
+            conexao.end()
+        }
+        else if (user.length === 6) {
+            psico = "SELECT * FROM Agendamento WHERE psicologo_crp = ? AND data_hora < ? AND arquivada = FALSE ORDER BY data_hora ASC"
+            let conexao = await mysql.createConnection(this.credentials)
+            resultado = await conexao.execute(psico, [user, now], (err, results) => {})
+            conexao.end()
+        }
+
+        return resultado[0]
+    }
+
+    async archive(id, motivo) {
+        let arquivar = 'UPDATE Agendamento SET arquivada = TRUE, motivo = ? WHERE id = ?'
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(arquivar, [motivo, id], (err, results) => {})
+        conexao.end()
+        return resultado
+    }
 }

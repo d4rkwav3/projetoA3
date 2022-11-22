@@ -17,15 +17,16 @@ export class AppointmentsService {
     constructor(private http: HttpClient, private router: Router) {}
 
     getAppointments(
+        future: boolean,
         patient?: Paciente,
         psico?: Psicologo
     ): Observable<Appointment[]> {
         let query!: HttpParams;
 
         if (patient !== undefined) {
-            query = new HttpParams().append('cpf', patient.cpf);
+            query = new HttpParams().append('cpf', patient.cpf).append("future", future);
         } else if (psico !== undefined) {
-            query = new HttpParams().append('psicologo_crp', psico.crp);
+            query = new HttpParams().append('psicologo_crp', psico.crp).append("future", future);
         }
 
         return this.http.get<Appointment[]>(this.url, { params: query });
@@ -44,12 +45,13 @@ export class AppointmentsService {
         return this.appointments;
     }
 
-    addAppoitment(nome: string, sobrenome: string, data_hora: string, local: string, patient: string, psico: number) :void {
+    addAppoitment(nome: string, sobrenome: string, data_hora: string, local: string, patient: string, psico: number) :Observable<any> {
         let params = new HttpParams().append('nome', nome).append('sobrenome', sobrenome).append('data_hora', data_hora).append('sala', local).append('paciente_id', patient).append('psicologo_crp', psico);
-        this.http.post(this.url, {}, {params: params}).subscribe((data) => {
-            // console.log(data);
-            alert("Seu agendamento foi registrado!");
-            this.router.navigate(['/home'])
-        })
+        return this.http.post(this.url, {}, {params: params});
+    }
+
+    archive(id: number, motivo: string) :Observable<any>{
+        let params = new HttpParams().append("id", id).append("motivo", motivo);
+        return this.http.patch(this.url, {}, { params: params })
     }
 }

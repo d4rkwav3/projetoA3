@@ -7,4 +7,6 @@ export interface Appointment {
     paciente_id: string;
     sessao_id: number | null;
     psicologo_crp: number;
+    arquivada: boolean;
+    motivo: string;
 }

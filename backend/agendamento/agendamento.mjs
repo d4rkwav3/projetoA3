@@ -4,6 +4,7 @@ import axios from 'axios'
 import moment from 'moment';
 import Database from '../models/database.mjs'
 import { config } from '../../config.mjs'
+import { Agendamento } from '../models/agendamento.mjs'
 
 const servico = express()
 servico.use(express.json())
@@ -19,23 +20,108 @@ const eventUrl = "http://localhost:9900/eventos"
 
 servico.get("/agendamentos", async (req, res) => {
     console.log(req.query)
-    if (req.query.cpf) {
-        let now = moment().format("YYYY-MM-DD")
-        let resultado = await db.getNextAppointments(req.query.cpf, now)
-        axios.post(eventUrl, {
-            tipo: "Busca agendamentos",
-            resultado
-        })
-        res.status(200).send(resultado)
-    } else if (req.query.psicologo_crp) {
-        let now = moment().format("YYYY-MM-DD")
-        let resultado = await db.getNextSessions(req.query.psicologo_crp, now)
-        axios.post(eventUrl, {
-            tipo: "Busca agendamentos",
-            resultado
-        })
-        res.status(200).send(resultado)
+    if (req.query.future === 'true') {
+        if (req.query.cpf) {
+            let resultado = []
+            let now = moment().format("YYYY-MM-DD")
+            let agendamento = await db.getNextAppointments(req.query.cpf, now)
+            agendamento.forEach(ag => {
+                resultado.push(new Agendamento(
+                    ag.id,
+                    ag.nome,
+                    ag.sobrenome,
+                    ag.data_hora,
+                    ag.sala,
+                    ag.paciente_id,
+                    ag.psicologo_crp,
+                    ag.sessao_id,
+                    false,
+                    ag.motivo
+                ))
+            });
+            axios.post(eventUrl, {
+                tipo: "Busca agendamentos",
+                resultado
+            })
+            console.log("data futura paciente")
+            res.status(200).send(resultado)
+        } else if (req.query.psicologo_crp) {
+            let resultado = []
+            let now = moment().format("YYYY-MM-DD")
+            let agendamento = await db.getNextSessions(req.query.psicologo_crp, now)
+            agendamento.forEach(ag => {
+                resultado.push(new Agendamento(
+                    ag.id,
+                    ag.nome,
+                    ag.sobrenome,
+                    ag.data_hora,
+                    ag.sala,
+                    ag.paciente_id,
+                    ag.psicologo_crp,
+                    ag.sessao_id,
+                    false,
+                    ag.motivo
+                ))
+            });
+            axios.post(eventUrl, {
+                tipo: "Busca agendamentos",
+                resultado
+            })
+            console.log("data futura psico")
+            res.status(200).send(resultado)
+        }
+    } else {
+        if (req.query.cpf) {
+            let resultado = []
+            let now = moment().format("YYYY-MM-DD")
+            let agendamento = await db.getPastAppointments(req.query.cpf, now)
+            agendamento.forEach(ag => {
+                resultado.push(new Agendamento(
+                    ag.id,
+                    ag.nome,
+                    ag.sobrenome,
+                    ag.data_hora,
+                    ag.sala,
+                    ag.paciente_id,
+                    ag.psicologo_crp,
+                    ag.sessao_id,
+                    false,
+                    ag.motivo
+                ))
+            });
+            axios.post(eventUrl, {
+                tipo: "Busca agendamentos",
+                resultado
+            })
+            console.log("data passada paciente")
+            res.status(200).send(resultado)
+        } else if (req.query.psicologo_crp) {
+            let resultado = []
+            let now = moment().format("YYYY-MM-DD")
+            let agendamento = await db.getPastAppointments(req.query.psicologo_crp, now)
+            agendamento.forEach(ag => {
+                resultado.push(new Agendamento(
+                    ag.id,
+                    ag.nome,
+                    ag.sobrenome,
+                    ag.data_hora,
+                    ag.sala,
+                    ag.paciente_id,
+                    ag.psicologo_crp,
+                    ag.sessao_id,
+                    false,
+                    ag.motivo
+                ))
+            });
+            axios.post(eventUrl, {
+                tipo: "Busca agendamentos",
+                resultado
+            })
+            console.log("data passada psico")
+            res.status(200).send(resultado)
+        }
     }
+    
     console.log(msg)
 })
 
@@ -62,6 +148,13 @@ servico.delete("/agendamentos", async (req, res) => {
         id
     })
     res.status(200).send(remover)
+})
+
+servico.patch('/agendamentos', async (req, res) => {
+    console.log(req.query)
+    let arquivar = await db.archive(req.query.id, req.query.motivo)
+    console.log(arquivar)
+    return res.send(arquivar)
 })
 
 servico.listen(porta, () => {

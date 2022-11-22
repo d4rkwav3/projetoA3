@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 // import { Moment } from 'moment';
 import { Appointment } from 'src/app/models/appointment.model';
 import { Psicologo } from 'src/app/models/psicologo.model';
@@ -13,7 +14,7 @@ import { LoginService } from 'src/app/services/login.service';
     styleUrls: ['./appointment.component.css'],
 })
 export class AppointmentComponent implements OnInit {
-    constructor(private ls: LoginService, private aps: AppointmentsService) {}
+    constructor(private ls: LoginService, private aps: AppointmentsService, private router: Router) {}
 
     ngOnInit(): void {
         this.hoje = new Date()
@@ -66,8 +67,12 @@ export class AppointmentComponent implements OnInit {
         else if (form.value.local === 'online') sala = this.online;
 
         if (this.user.paciente) {
-            this.aps.addAppoitment(user.nome, user.sobrenome, form.value.data.toISOString().substring(0,10) + ' ' + form.value.hora + ':00', sala, this.user.paciente?.cpf, this.psico.crp)
-            form.reset()
+            this.aps.addAppoitment(user.nome, user.sobrenome, form.value.data.toISOString().substring(0,10) + ' ' + form.value.hora + ':00', sala, this.user.paciente?.cpf, this.psico.crp).subscribe((data) => {
+                // console.log(data)
+                alert("Seu agendamento foi registrado!");
+                form.reset()
+                this.router.navigate(['/home'])
+            });
         } 
     }
 }

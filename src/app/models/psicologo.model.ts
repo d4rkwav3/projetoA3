@@ -3,7 +3,7 @@ export interface Psicologo {
     cpf: string;
     usuario_id: number;
     titulacao: string;
-    especialidade: string;
+    especialidade: string | null;
     atendimento :string;
     valor: number;
 }

@@ -47,6 +47,8 @@ CREATE TABLE Agendamento (
     paciente_id VARCHAR(11) NOT NULL,
     psicologo_crp INT NOT NULL,
     sessao_id INT DEFAULT NULL,
+    arquivada BOOLEAN DEFAULT FALSE,
+    motivo VARCHAR(100) DEFAULT NULL,
     FOREIGN KEY (paciente_id) REFERENCES Paciente(cpf),
     FOREIGN KEY (psicologo_crp) REFERENCES Psicologo(crp)
 );
