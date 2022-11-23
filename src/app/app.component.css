@@ -7,13 +7,6 @@ mat-toolbar {
 mat-toolbar > h3 {
     text-align: left;
 }
-main {
-    text-align: center;
-    margin-top: 2rem;
-    width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-}
 ul {
     text-align: center;
 }
@@ -35,4 +28,11 @@ a {
 }
 p {
     margin-top: 2rem;
+}
+#cadastro {
+    text-align: center;
+    margin-top: 2rem;
+    width: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }

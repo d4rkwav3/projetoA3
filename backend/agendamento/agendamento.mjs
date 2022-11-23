@@ -151,10 +151,10 @@ servico.delete("/agendamentos", async (req, res) => {
 })
 
 servico.patch('/agendamentos', async (req, res) => {
-    console.log(req.query)
-    let arquivar = await db.archive(req.query.id, req.query.motivo)
+    console.log(req.body)
+    let arquivar = await db.archive(req.body.id, req.body.motivo)
     console.log(arquivar)
-    return res.send(arquivar)
+    return res.status(200).send(arquivar)
 })
 
 servico.listen(porta, () => {

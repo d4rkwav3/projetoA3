@@ -5,6 +5,7 @@ import { Session } from 'src/app/models/session.model';
 import { User } from 'src/app/models/user.model';
 import { AppointmentsService } from 'src/app/services/appointments.service';
 import { LoginService } from 'src/app/services/login.service';
+import { SessionService } from 'src/app/services/session.service';
 
 @Component({
     selector: 'app-register',
@@ -12,9 +13,10 @@ import { LoginService } from 'src/app/services/login.service';
     styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-    constructor(private ls: LoginService, private aps: AppointmentsService) {}
+    constructor(private ls: LoginService, private aps: AppointmentsService, private ss: SessionService) {}
 
     ngOnInit(): void {
+        this.ls.setActiveRoute("register")
         this.user = this.ls.getUser();
         this.aps.getAppointments(false , undefined, this.user.psico).subscribe((data) => {
             this.appointments = data;
@@ -43,15 +45,16 @@ export class RegisterComponent implements OnInit {
             this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
             console.log(this.appointments.length);
         })
-        // this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
-        // console.log(this.appointments.length);
     }
 
     registrar(ag: Appointment) :void {
         let nova = this.sessao.find(session => session.agendamento.id === ag.id);
-        console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
-        this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
-        this.sessao = this.sessao.filter(session => session.agendamento.id !== ag.id);
-        console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
+        this.ss.addSession(nova).subscribe((res) => {
+            console.log(res)
+        })
+        // console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
+        // this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
+        // this.sessao = this.sessao.filter(session => session.agendamento.id !== ag.id);
+        // console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
     }
 }

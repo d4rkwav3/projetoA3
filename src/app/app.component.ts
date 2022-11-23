@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from './models/user.model';
 import { Router } from '@angular/router';
 import { LoginService } from './services/login.service';
@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
 
     user!: User;
     hide: boolean = false;
-    apresentacao: boolean = false;
 
     onLogIn(): void {
         this.hide = true;

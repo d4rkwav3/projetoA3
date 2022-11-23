@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PsicoInfo } from 'src/app/models/psicoInfo.model';
@@ -14,11 +14,11 @@ import { UserDataService } from 'src/app/services/user-data.service';
 })
 export class NewUserComponent implements OnInit {
 
-    constructor(private ls: LoginService, private ud: UserDataService, private router: Router) {}
+     constructor(private ls: LoginService, private ud: UserDataService, private router: Router) {}
 
     ngOnInit(): void {
-        this.ls.setActiveRoute('newuser')
-        console.log("rota ativa: newuser")
+        this.ls.setActiveRoute('newuser');
+        console.log("rota ativa: newuser");
         this.hoje = new Date();
         this.ls.selectPsicos().subscribe((psicos) => {
             this.psicos = psicos;
@@ -101,5 +101,10 @@ export class NewUserComponent implements OnInit {
             })
         } else { console.log("forms inválido!")}
         form.reset()
+    }
+
+    voltar() :void {
+        this.ls.setActiveRoute('/');
+        this.router.navigate(['']);
     }
 }

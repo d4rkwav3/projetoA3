@@ -76,7 +76,7 @@
             </mat-form-field>
 
             <mat-card-actions>
-                <button class="acoes" mat-button routerLink="/">Voltar</button>
+                <button class="acoes" mat-button (click)="voltar()">Voltar</button>
                 <button class="acoes" mat-button (click)="cadastrar(form)">Enviar</button>
             </mat-card-actions>
         </form>

@@ -34,7 +34,8 @@ servico.get('/sessao', async (req, res) => {
                 element.sobrenome,
                 element.observacoes,
                 element.notas,
-                new Agendamento(element.a_id,
+                new Agendamento(
+                    element.a_id,
                     element.nome,
                     element.sobrenome,
                     element.data_hora,
@@ -83,12 +84,12 @@ servico.get('/sessao', async (req, res) => {
 servico.post('/sessao', async (req, res) => {
     let tabela = 'Sessao'
     let colunas = '(nome, sobrenome, observacoes, notas, agendamento_id, paciente_id, psicologo_id)'
-    let valores = [req.query.nome, req.query.sobrenome, req.query.observacoes, req.query.notas, req.query.agendamento_id, req.query.paciente_id, req.query.psicologo_id]
+    let valores = [req.body.nome, req.body.sobrenome, req.body.observacoes, req.body.notas, req.body.agendamento_id, req.body.paciente_id, req.body.psicologo_id]
     let insert = await db.insert(tabela, colunas, valores)
-    axios.post(eventUrl, {
-        tipo: "Sessão realizada",
-        insert
-    })
+    // axios.post(eventUrl, {
+    //     tipo: "Sessão realizada, atualizar evento",
+    //     insert
+    // })
     console.log(insert)
     console.log(msg)
 

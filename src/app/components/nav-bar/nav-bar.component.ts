@@ -33,6 +33,8 @@ export class NavBarComponent implements OnInit, OnDestroy {
     onLogOut() :void {
         if(confirm("Você irá deslogar, tem certeza?")) {
             this.logout.emit(true);
+            this.ls.setActiveRoute('/');
+            console.log("rota ativa: /")
             this.router.navigate(['']);
         }
     }

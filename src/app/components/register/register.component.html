@@ -1,4 +1,6 @@
-<h2 *ngIf="appointments.length === 0">Sessões com registros pendentes</h2>
+<h2 *ngIf="appointments.length === 0">Nenhuma sessão com registro pndente.</h2>
+<h2 *ngIf="appointments.length === 1">{{ appointments.length }} sessão com registro pendente.</h2>
+<h2 *ngIf="appointments.length > 1">{{ appointments.length }} sessões com registros pendentes.</h2>
 
 <div id="paciente">
     <mat-accordion>

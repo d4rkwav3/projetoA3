@@ -27,4 +27,8 @@ export class SessionService {
 
         return this.http.get<Session[]>(this.url, { params: params });
     }
+
+    addSession(session?: Session) :Observable<any> {
+        return this.http.post(this.url, session)
+    }
 }

@@ -41,6 +41,7 @@ import { AppointmentComponent } from './components/appointment/appointment.compo
 import { SessionComponent } from './components/session/session.component';
 import { NewUserComponent } from './components/new-user/new-user.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CardComponent } from './components/card/card.component';
 //pipes em pt-br
 registerLocaleData(ptBr)
 
@@ -55,6 +56,7 @@ registerLocaleData(ptBr)
     SessionComponent,
     NewUserComponent,
     RegisterComponent,
+    CardComponent,
   ],
   imports: [
     BrowserModule,
