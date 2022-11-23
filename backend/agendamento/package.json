@@ -1,11 +1,11 @@
 {
   "name": "agendamento",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Microsserviço que gerencia agendamento de sessões",
   "main": "agendamento.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon agendamento.mjs"
+    "start": "agendamento.mjs"
   },
   "repository": {
     "type": "git",

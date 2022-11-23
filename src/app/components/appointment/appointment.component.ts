@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-// import { Moment } from 'moment';
 import { Appointment } from 'src/app/models/appointment.model';
 import { Psicologo } from 'src/app/models/psicologo.model';
 import { User } from 'src/app/models/user.model';

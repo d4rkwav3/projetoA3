@@ -1,11 +1,11 @@
 {
   "name": "sessao",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Microsserviço que cria e gerencia Sessões",
   "main": "sessao.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon sessao.mjs"
+    "start": "sessao.mjs"
   },
   "repository": {
     "type": "git",

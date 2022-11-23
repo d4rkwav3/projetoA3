@@ -8,10 +8,13 @@
                     [min]="validador">
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
+                <mat-hint>DD/MM/AAAA</mat-hint>
             </mat-form-field>
-            <mat-form-field id="hora">
-                <input matInput required type="time" placeholder="Escolha uma horário" ngModel name="hora">
+           <mat-form-field id="hora">
+             <input matInput required type="time" placeholder="Escolha uma horário" ngModel name="hora">
+             <mat-hint>hh:mm</mat-hint>
             </mat-form-field>
+
             <mat-card-actions>
                 <p id="local">Local:</p>
                 <mat-radio-group ngModel name="local">

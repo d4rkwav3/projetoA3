@@ -85,6 +85,7 @@
     <mat-card id="psico" *ngIf="selection">
         <img src="../../../assets/account_circle_white.svg" width="120px">
         <h1 class="psicoInfo">{{ selection.nome }} {{ selection.sobrenome }}</h1>
+        <p class="psicoInfo">CRP: {{ selection.crp }}</p>
         <h2 class="psicoInfo">{{ selection.titulacao }}</h2>
         <h3 class="psicoInfo" *ngIf="selection.especialidade">{{ selection.especialidade }}</h3>
         <h5>Valor da consulta*:</h5>

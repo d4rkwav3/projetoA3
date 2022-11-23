@@ -1,6 +1,6 @@
 {
   "name": "ProjetoA3",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -25,7 +25,6 @@
     "cors": "^2.8.5",
     "moment": "^2.29.4",
     "mysql2": "^2.3.3",
-    "ngx-material-timepicker": "^5.5.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

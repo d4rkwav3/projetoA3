@@ -18,7 +18,7 @@ Sistema de agendamento de sessões para uma clínica psicológica.
 
 - [X] Cadastro de usuários
 - [X] Agendamento de sessões
-- [ ] Inserção de notas da sessão
+- [X] Inserção de notas da sessão
 - [X] Visualização de notas da sessão
 - [X] Persistência de dados (MySQL/MariaDB)
 - [X] Histórico de sessões

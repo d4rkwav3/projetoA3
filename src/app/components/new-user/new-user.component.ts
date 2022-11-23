@@ -56,9 +56,8 @@ export class NewUserComponent implements OnInit {
         if (value !== undefined) {
             let valor: number = Number(value);
             this.psicos.filter(element => {
-                valor === element.crp
+                if(valor === element.crp)
                 this.selection = element;
-                this.selection.especialidade = 'Especialista em crianças e adolescentes'
             })
         } else {
             this.selection = undefined;

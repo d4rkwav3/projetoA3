@@ -168,22 +168,22 @@ export default class Database {
 
     async getSessions(tipo, id, date) {
         if (tipo === 'paciente') {
-            let s1 = 'SELECT sessao.id as s_id, sessao.nome as nome, sessao.sobrenome as sobrenome, '
-            let s2 = 'observacoes, notas, agendamento_id as a_id, sessao.paciente_id as paciente, '
-            let s3 = 'sessao.psicologo_id as psicologo, agendamento.data_hora, agendamento.sala '
-            let s4 = 'FROM sessao LEFT JOIN Agendamento ON agendamento.id = sessao.agendamento_id '
-            let s5 = 'WHERE arquivada IS NOT TRUE AND sessao.paciente_id = ? AND data_hora < ? ORDER BY data_hora DESC;'
+            let s1 = 'SELECT Sessao.id as s_id, Sessao.nome as nome, Sessao.sobrenome as sobrenome, '
+            let s2 = 'observacoes, notas, Agendamento_id as a_id, Sessao.paciente_id as paciente, '
+            let s3 = 'Sessao.psicologo_id as psicologo, Agendamento.data_hora, Agendamento.sala '
+            let s4 = 'FROM Sessao LEFT JOIN Agendamento ON Agendamento.id = Sessao.agendamento_id '
+            let s5 = 'WHERE arquivada IS NOT TRUE AND Sessao.paciente_id = ? AND data_hora < ? ORDER BY data_hora DESC;'
             let sessao = s1 + s2 + s3 + s4 + s5
             let conexao = await mysql.createConnection(this.credentials)
             let [sessoes] = await conexao.execute(sessao, [id, date], (err, results) => {})
             conexao.end()
             return sessoes
         } else if (tipo === 'psicologo') {
-            let s1 = 'SELECT sessao.id as s_id, sessao.nome as nome, sessao.sobrenome as sobrenome, '
-            let s2 = 'observacoes, notas, agendamento_id as a_id, sessao.paciente_id as paciente, '
-            let s3 = 'sessao.psicologo_id as psicologo, agendamento.data_hora, agendamento.sala '
-            let s4 = 'FROM sessao LEFT JOIN Agendamento ON agendamento.id = sessao.agendamento_id '
-            let s5 = 'WHERE arquivada IS NOT TRUE AND sessao.psicologo_id = ? AND data_hora < ? ORDER BY data_hora DESC;'
+            let s1 = 'SELECT Sessao.id as s_id, Sessao.nome as nome, Sessao.sobrenome as sobrenome, '
+            let s2 = 'observacoes, notas, Agendamento_id as a_id, Sessao.paciente_id as paciente, '
+            let s3 = 'Sessao.psicologo_id as psicologo, Agendamento.data_hora, Agendamento.sala '
+            let s4 = 'FROM Sessao LEFT JOIN Agendamento ON Agendamento.id = Sessao.agendamento_id '
+            let s5 = 'WHERE arquivada IS NOT TRUE AND Sessao.psicologo_id = ? AND data_hora < ? ORDER BY data_hora DESC;'
             let sessao = s1 + s2 + s3 + s4 + s5
             let conexao = await mysql.createConnection(this.credentials)
             let [sessoes] = await conexao.execute(sessao, [id, date], (err, results) => {})

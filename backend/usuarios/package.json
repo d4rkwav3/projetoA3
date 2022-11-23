@@ -1,11 +1,11 @@
 {
   "name": "usuarios",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "Microsserviço gerencia o login e dados dos usuários",
   "main": "usuarios.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon usuarios.mjs"
+    "start": "usuarios.mjs"
   },
   "repository": {
     "type": "git",

@@ -87,19 +87,19 @@ INSERT INTO Usuario(
     cep,
     tipo) VALUES (
     1,
-	'bvsilva',
-    '123',
+	'teste',
+    'teste',
     'bvsilva@hotmail.com',
     '1990-08-29',
-    'Bruno',
-    'Venâncio',
-    '11987786706',
-    'Rua Suarella, 99 - Vila Missionária',
+    'Fulano',
+    'de Tal',
+    '11123456789',
+    'Rua Qualquer, 1000 - Jardim Nulo',
     'São Paulo - SP',
-    '04430080',
+    '9305178',
     'paciente');
     
-INSERT INTO Paciente(cpf, usuario_id) VALUES ('38434365847', 1);
+INSERT INTO Paciente(cpf, usuario_id) VALUES ('12345678910', 1);
     
 INSERT INTO Usuario(
 	id,
@@ -115,24 +115,116 @@ INSERT INTO Usuario(
     cep,
     tipo) VALUES (
     2,
-	'pripontes',
-    '123',
-    'psicopri@hotmail.com',
+	'psico1',
+    'psico1',
+    'psico1@projetoa3.com',
     '1986-06-21',
-    'Priscila',
+    'Ana Beatriz',
     'Pontes',
     '11123456789',
-    'Avenida José André de Moraes, 1143 - Jardim Monte Alegre',
-    'Taboão da Serra - SP',
-    '06755260',
+    'Av. dos Mares, 561 - Alto da Boa Vista',
+    'São Paulo - SP',
+    '95430861',
     'psicologo');
 
-INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, atendimento, valor) VALUES (
+INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, especialidade, atendimento, valor) VALUES (
 	'123456', 
-    '12345678910', 
+    '92468130875', 
     2,
-    'Graduada em Psicologia',
+    'Graduada em Psicologia, Mestre em Psicologia Comportamental',
+    'Especialista em Terapia de Casal', 
     'Rua Teste, nº00 - Sala 00',
     200);
     
-UPDATE Paciente SET psicologo_crp = 123456, valorConsulta = 100.00 WHERE cpf='38434365847';
+UPDATE Paciente SET psicologo_crp = 123456, valorConsulta = 200.00 WHERE cpf='12345678910';
+
+INSERT INTO Usuario(
+	id,
+    login,
+    senha,
+    email,
+    dataNascimento,
+    nome,
+    sobrenome,
+    telefone,
+    endereco,
+    cidade,
+    cep,
+    tipo) VALUES (
+    3,
+	'psico2',
+    'psico2',
+    'psico2@projetoa3.com',
+    '1975-11-15',
+    'Antônio Carlos',
+    'Silveira',
+    '11956438706',
+    'Rua das Rosas, 15 - Vila Alegre',
+    'São Paulo - SP',
+    '38192756',
+    'psicologo');
+
+INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, especialidade, atendimento, valor) VALUES (
+	'297381', 
+    '62498050315', 
+    3,
+    'Graduado em Psicologia',
+    'Especialista em Musicoterapia', 
+    'Rua das Rosas, 15 - Vila Alegre',
+    150);
+
+INSERT INTO Usuario(
+	id,
+    login,
+    senha,
+    email,
+    dataNascimento,
+    nome,
+    sobrenome,
+    telefone,
+    endereco,
+    cidade,
+    cep,
+    tipo) VALUES (
+    4,
+	'psico3',
+    'psico3',
+    'psico3@projetoa3.com',
+    '1975-11-15',
+    'Rosana',
+    'Navarro',
+    '1199245454',
+    'Av. Libertadores da Ámerica, 2665 - Centro',
+    'São Paulo - SP',
+    '06698123',
+    'psicologo');
+
+INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, especialidade, atendimento, valor) VALUES (
+	'001265', 
+    '16794385246', 
+    4,
+    'Graduada em Psicologia, Mestre em Análise Comportamental',
+    'Especialista em Crianças e Adolescentes', 
+    'Av. Libertadores da Ámerica, 2665 - Apt. 35',
+    250);
+
+INSERT INTO Agendamento (nome, sobrenome, data_hora, sala, paciente_id, psicologo_crp) VALUES (
+    'Fulano',
+    'de Tal',
+    '2022-11-18 15:00:00',
+    'Online via Zoom',
+    '12345678910',
+    123456
+);
+
+INSERT INTO Sessao (nome, sobrenome, observacoes, notas, agendamento_id, paciente_id, psicologo_id) VALUES (
+    'Fulano',
+    'de Tal',
+    'Esse texto é visível apenas para o psicologo.',
+    'Esse texto é visivel tanto para o paciente como para seu psicologo(a).',
+    1,
+    '12345678910',
+    123456
+);
+
+UPDATE Agendamento SET sessao_id = 1 WHERE id = 1;
