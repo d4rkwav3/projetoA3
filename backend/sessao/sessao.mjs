@@ -40,15 +40,17 @@ servico.get('/sessao', async (req, res) => {
                     element.sobrenome,
                     element.data_hora,
                     element.sala,
-                    element.paciente_id,
+                    element.paciente,
+                    element.psicologo,
                     element.s_id,
-                    element.psicologo_crp)
+                    false,
+                    null)
             ))
         })
-        axios.post(eventUrl, {
-            tipo: "Busca sessões",
-            resultado
-        }) 
+        // axios.post(eventUrl, {
+        //     tipo: "Busca sessões",
+        //     resultado
+        // }) 
         console.log(msg)
         return res.status(200).send(resultado)
     } else if (req.query.tipo === 'psicologo') {
@@ -62,20 +64,23 @@ servico.get('/sessao', async (req, res) => {
                 element.sobrenome,
                 element.observacoes,
                 element.notas,
-                new Agendamento(element.a_id,
+                new Agendamento(
+                    element.a_id,
                     element.nome,
                     element.sobrenome,
                     element.data_hora,
                     element.sala,
-                    element.paciente_id,
+                    element.paciente,
+                    element.psicologo,
                     element.s_id,
-                    element.psicologo_crp)
+                    false,
+                    null)
             ))
         })
-        axios.post(eventUrl, {
-            tipo: "Busca sessões",
-            resultado
-        }) 
+        // axios.post(eventUrl, {
+        //     tipo: "Busca sessões",
+        //     resultado
+        // }) 
         console.log(msg)
         return res.status(200).send(resultado)
     }
@@ -84,13 +89,16 @@ servico.get('/sessao', async (req, res) => {
 servico.post('/sessao', async (req, res) => {
     let tabela = 'Sessao'
     let colunas = '(nome, sobrenome, observacoes, notas, agendamento_id, paciente_id, psicologo_id)'
-    let valores = [req.body.nome, req.body.sobrenome, req.body.observacoes, req.body.notas, req.body.agendamento_id, req.body.paciente_id, req.body.psicologo_id]
+    let valores = [req.body.nome, req.body.sobrenome, req.body.observacoes, req.body.notas, req.body.agendamento.id, req.body.agendamento.paciente_id, req.body.agendamento.psicologo_crp]
     let insert = await db.insert(tabela, colunas, valores)
-    // axios.post(eventUrl, {
-    //     tipo: "Sessão realizada, atualizar evento",
-    //     insert
-    // })
-    console.log(insert)
+
+    let evento = await axios.post(eventUrl, {
+        tipo: "update",
+        sessao_id: insert.insertId,
+        agendamento_id: req.body.agendamento.id,
+    })
+    console.log("evento", evento.data)
+    console.log("sessão", insert)
     console.log(msg)
 
     res.status(201).send(insert)

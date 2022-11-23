@@ -38,23 +38,24 @@ export class RegisterComponent implements OnInit {
     sessao: Session[] = [];
 
     arquivar(ag: Appointment) :void {
-        console.log(this.appointments.length);
+        // console.log(this.appointments.length);
         this.aps.archive(ag.id, ag.motivo).subscribe((data) => {
-            console.log(data);
-            console.log(`Agendamento de ${ag.nome} ${ag.sobrenome} do dia ${ag.data_hora} arquivado!`);
+            // console.log(data);
+            alert("Agendamento arquivado com sucesso!");
+            // console.log(`Agendamento de ${ag.nome} ${ag.sobrenome} do dia ${ag.data_hora} arquivado!`);
             this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
-            console.log(this.appointments.length);
+            // console.log(this.appointments.length);
         })
     }
 
     registrar(ag: Appointment) :void {
         let nova = this.sessao.find(session => session.agendamento.id === ag.id);
         this.ss.addSession(nova).subscribe((res) => {
-            console.log(res)
+            alert("Sessão registrada com sucesso!");
+            // console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
+            this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
+            this.sessao = this.sessao.filter(session => session.agendamento.id !== ag.id);
+            // console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
         })
-        // console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
-        // this.appointments = this.appointments.filter(agendamento => agendamento.id !== ag.id);
-        // this.sessao = this.sessao.filter(session => session.agendamento.id !== ag.id);
-        // console.log("Sessão:", this.sessao.length, "Agendamento:", this.appointments.length);
     }
 }

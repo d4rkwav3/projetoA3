@@ -29,6 +29,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDividerModule } from '@angular/material/divider';
 
+/* input de hora em material design 
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+*/
 /* Configura os pipes e datepicker para pt-br*/
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID } from '@angular/core';
@@ -56,7 +59,7 @@ registerLocaleData(ptBr)
     SessionComponent,
     NewUserComponent,
     RegisterComponent,
-    CardComponent,
+    CardComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +81,8 @@ registerLocaleData(ptBr)
     MatCheckboxModule,
     MatRadioModule,
     MatSelectModule,
-    MatDividerModule
+    MatDividerModule,
+    /* NgxMaterialTimepickerModule.setLocale('pt-BR') */
   ],
   providers: [
     // data do datepicker em pt-br

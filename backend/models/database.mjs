@@ -168,13 +168,23 @@ export default class Database {
 
     async getSessions(tipo, id, date) {
         if (tipo === 'paciente') {
-            let sessao = 'SELECT Agendamento.id as a_id, data_hora, sala, Sessao.id as s_id, Agendamento.nome, Agendamento.sobrenome, observacoes, notas, Agendamento.paciente_id, Agendamento.psicologo_crp FROM Agendamento, Sessao WHERE sessao_id IS NOT NULL AND arquivada IS NOT TRUE AND sessao_id = Sessao.id AND Sessao.paciente_id = ? AND data_hora < ? ORDER BY data_hora DESC'
+            let s1 = 'SELECT sessao.id as s_id, sessao.nome as nome, sessao.sobrenome as sobrenome, '
+            let s2 = 'observacoes, notas, agendamento_id as a_id, sessao.paciente_id as paciente, '
+            let s3 = 'sessao.psicologo_id as psicologo, agendamento.data_hora, agendamento.sala '
+            let s4 = 'FROM sessao LEFT JOIN Agendamento ON agendamento.id = sessao.agendamento_id '
+            let s5 = 'WHERE arquivada IS NOT TRUE AND sessao.paciente_id = ? AND data_hora < ? ORDER BY data_hora DESC;'
+            let sessao = s1 + s2 + s3 + s4 + s5
             let conexao = await mysql.createConnection(this.credentials)
             let [sessoes] = await conexao.execute(sessao, [id, date], (err, results) => {})
             conexao.end()
             return sessoes
         } else if (tipo === 'psicologo') {
-            let sessao = 'SELECT Agendamento.id as a_id, data_hora, sala, Sessao.id as s_id, Agendamento.nome, Agendamento.sobrenome, observacoes, notas, Agendamento.paciente_id, Agendamento.psicologo_crp FROM Agendamento, Sessao WHERE sessao_id IS NOT NULL AND arquivada IS NOT TRUE AND sessao_id = Sessao.id AND Sessao.psicologo_id = ? AND data_hora < ? ORDER BY data_hora DESC'
+            let s1 = 'SELECT sessao.id as s_id, sessao.nome as nome, sessao.sobrenome as sobrenome, '
+            let s2 = 'observacoes, notas, agendamento_id as a_id, sessao.paciente_id as paciente, '
+            let s3 = 'sessao.psicologo_id as psicologo, agendamento.data_hora, agendamento.sala '
+            let s4 = 'FROM sessao LEFT JOIN Agendamento ON agendamento.id = sessao.agendamento_id '
+            let s5 = 'WHERE arquivada IS NOT TRUE AND sessao.psicologo_id = ? AND data_hora < ? ORDER BY data_hora DESC;'
+            let sessao = s1 + s2 + s3 + s4 + s5
             let conexao = await mysql.createConnection(this.credentials)
             let [sessoes] = await conexao.execute(sessao, [id, date], (err, results) => {})
             conexao.end()
@@ -210,7 +220,7 @@ export default class Database {
             conexao.end()
         }
         else if (user.length === 6) {
-            psico = "SELECT * FROM Agendamento WHERE psicologo_crp = ? AND data_hora < ? AND arquivada = FALSE ORDER BY data_hora ASC"
+            psico = "SELECT * FROM Agendamento WHERE psicologo_crp = ? AND data_hora < ? AND arquivada IS FALSE AND sessao_id IS NULL ORDER BY data_hora ASC"
             let conexao = await mysql.createConnection(this.credentials)
             resultado = await conexao.execute(psico, [user, now], (err, results) => {})
             conexao.end()
@@ -223,6 +233,14 @@ export default class Database {
         let arquivar = 'UPDATE Agendamento SET arquivada = TRUE, motivo = ? WHERE id = ?'
         let conexao = await mysql.createConnection(this.credentials)
         let [resultado] = await conexao.execute(arquivar, [motivo, id], (err, results) => {})
+        conexao.end()
+        return resultado
+    }
+
+    async updateAppointment(sessao, agendamento) {
+        let update = 'UPDATE Agendamento SET sessao_id = ? WHERE id = ?'
+        let conexao = await mysql.createConnection(this.credentials)
+        let [resultado] = await conexao.execute(update, [sessao, agendamento], (err, results) => {})
         conexao.end()
         return resultado
     }

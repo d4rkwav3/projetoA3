@@ -39,10 +39,10 @@ servico.get("/agendamentos", async (req, res) => {
                     ag.motivo
                 ))
             });
-            axios.post(eventUrl, {
-                tipo: "Busca agendamentos",
-                resultado
-            })
+            // axios.post(eventUrl, {
+            //     tipo: "Busca agendamentos",
+            //     resultado
+            // })
             console.log("data futura paciente")
             res.status(200).send(resultado)
         } else if (req.query.psicologo_crp) {
@@ -63,10 +63,10 @@ servico.get("/agendamentos", async (req, res) => {
                     ag.motivo
                 ))
             });
-            axios.post(eventUrl, {
-                tipo: "Busca agendamentos",
-                resultado
-            })
+            // axios.post(eventUrl, {
+            //     tipo: "Busca agendamentos",
+            //     resultado
+            // })
             console.log("data futura psico")
             res.status(200).send(resultado)
         }
@@ -89,10 +89,10 @@ servico.get("/agendamentos", async (req, res) => {
                     ag.motivo
                 ))
             });
-            axios.post(eventUrl, {
-                tipo: "Busca agendamentos",
-                resultado
-            })
+            // axios.post(eventUrl, {
+            //     tipo: "Busca agendamentos",
+            //     resultado
+            // })
             console.log("data passada paciente")
             res.status(200).send(resultado)
         } else if (req.query.psicologo_crp) {
@@ -113,10 +113,10 @@ servico.get("/agendamentos", async (req, res) => {
                     ag.motivo
                 ))
             });
-            axios.post(eventUrl, {
-                tipo: "Busca agendamentos",
-                resultado
-            })
+            // axios.post(eventUrl, {
+            //     tipo: "Busca agendamentos",
+            //     resultado
+            // })
             console.log("data passada psico")
             res.status(200).send(resultado)
         }
@@ -131,10 +131,10 @@ servico.post("/agendamentos", async (req, res) => {
     let colunas = '(nome, sobrenome, data_hora, sala, paciente_id, psicologo_crp)'
     let valores = [req.query.nome, req.query.sobrenome, req.query.data_hora, req.query.sala, req.query.paciente_id, req.query.psicologo_crp]
     let insert = await db.insert(tabela, colunas, valores)
-    axios.post(eventUrl, {
-        tipo: "Novo agendamento",
-        insert
-    })
+    // axios.post(eventUrl, {
+    //     tipo: "Novo agendamento",
+    //     insert
+    // })
     console.log(msg)
     res.status(201).send(insert)
 })
@@ -143,18 +143,27 @@ servico.delete("/agendamentos", async (req, res) => {
     let id = req.query.id
     let remover = await db.removeAppointment(req.query.id)
     console.log(remover)
-    axios.post(eventUrl, {
-        tipo: "Agendamento removido",
-        id
-    })
+    // axios.post(eventUrl, {
+    //     tipo: "Agendamento removido",
+    //     id
+    // })
     res.status(200).send(remover)
 })
 
 servico.patch('/agendamentos', async (req, res) => {
-    console.log(req.body)
-    let arquivar = await db.archive(req.body.id, req.body.motivo)
-    console.log(arquivar)
-    return res.status(200).send(arquivar)
+    if (req.body.tipo === "arquivar") {
+        console.log(req.body)
+        let arquivar = await db.archive(req.body.id, req.body.motivo)
+        console.log(arquivar)
+        console.log(msg)
+        return res.status(200).send(arquivar)
+    } else if (req.body.tipo === 'update') {
+        console.log(req.body)
+        let update = await db.updateAppointment(req.body.sessao_id, req.body.agendamento_id)
+        console.log(update)
+        console.log(msg)
+        return res.status(200).send(update)
+    }
 })
 
 servico.listen(porta, () => {

@@ -39,12 +39,16 @@ export class HomeComponent implements OnInit {
                     this.aps.setAppointments(ag);
                 })
             })
+            this.aps.getAppointments(false, undefined, this.loguedUser.psico).subscribe((past) => {
+                this.agendamentosPassados = past;
+            })
         }
         this.loading = false;
     }
     loading: boolean = false;
 
     agendamentosRecentes: Appointment[] = [];
+    agendamentosPassados: Appointment[] = [];
 
     loguedUser!: User;
 }

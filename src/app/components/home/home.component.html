@@ -3,6 +3,9 @@
 
 <h3 *ngIf="agendamentosRecentes.length > 0">Próximas sessões:</h3>
 <h3 *ngIf="agendamentosRecentes.length === 0">Nenhuma sessão agendada.</h3>
+<h3 *ngIf="agendamentosPassados.length > 0">Você possui {{ agendamentosPassados.length }} sessões com registro pendente.</h3>
+<h3 *ngIf="agendamentosPassados.length === 1">Você possui {{ agendamentosPassados.length }} sessão com registro pendente.</h3>
+<h3 *ngIf="agendamentosPassados.length === 0">Você não possui nenhuma pendência.</h3>
 
 <mat-progress-spinner *ngIf="loading" value="50" mode="indeterminate"></mat-progress-spinner>
 

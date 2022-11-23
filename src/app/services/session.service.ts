@@ -29,6 +29,7 @@ export class SessionService {
     }
 
     addSession(session?: Session) :Observable<any> {
+        console.log("argumento do addSession", session);
         return this.http.post(this.url, session)
     }
 }

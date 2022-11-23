@@ -52,6 +52,6 @@ export class AppointmentsService {
 
     archive(id: number, motivo: string) :Observable<any>{
         // let params = new HttpParams().append("id", id).append("motivo", motivo);
-        return this.http.patch(this.url, { id: id, motivo: motivo })
+        return this.http.patch(this.url, { tipo: 'arquivar', id: id, motivo: motivo })
     }
 }
