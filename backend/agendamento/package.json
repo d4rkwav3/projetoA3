@@ -5,7 +5,7 @@
   "main": "agendamento.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "agendamento.mjs"
+    "start": "nodemon agendamento.mjs"
   },
   "repository": {
     "type": "git",
