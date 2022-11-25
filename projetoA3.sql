@@ -88,7 +88,7 @@ INSERT INTO Usuario(
     tipo) VALUES (
     1,
 	'teste',
-    'teste',
+    '123',
     'bvsilva@hotmail.com',
     '1990-08-29',
     'Fulano',
@@ -116,7 +116,7 @@ INSERT INTO Usuario(
     tipo) VALUES (
     2,
 	'psico1',
-    'psico1',
+    '123',
     'psico1@projetoa3.com',
     '1986-06-21',
     'Ana Beatriz',
@@ -131,7 +131,7 @@ INSERT INTO Psicologo(crp, cpf, usuario_id, titulacao, especialidade, atendiment
 	'123456', 
     '92468130875', 
     2,
-    'Graduada em Psicologia, Mestre em Psicologia Comportamental',
+    'Graduada em Psicologia',
     'Especialista em Terapia de Casal', 
     'Rua Teste, nº00 - Sala 00',
     200);
@@ -153,7 +153,7 @@ INSERT INTO Usuario(
     tipo) VALUES (
     3,
 	'psico2',
-    'psico2',
+    '123',
     'psico2@projetoa3.com',
     '1975-11-15',
     'Antônio Carlos',
@@ -188,7 +188,7 @@ INSERT INTO Usuario(
     tipo) VALUES (
     4,
 	'psico3',
-    'psico3',
+    '123',
     'psico3@projetoa3.com',
     '1975-11-15',
     'Rosana',
