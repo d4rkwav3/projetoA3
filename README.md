@@ -7,7 +7,7 @@ e Usabilidade, Desenvolvimento Web, Mobile e Jogos da unidade Jabaquara.
 
 Sistema de agendamento de sessões para uma clínica psicológica.
 
-Link do vídeo de apresentação: [Youtube](https://link-da-documentação), [Google Drive](https://link-da-documentação)
+Link do vídeo de apresentação: [Youtube](https://www.youtube.com/watch?v=cAg2qTX57lU), [Google Drive](https://drive.google.com/file/d/1IKQtJVK6zVTCPIxwtz_3zjezdfiFEB0m/view)
 ## Membros do grupo
 
 - Bruno Venâncio de Souza e Silva - RA: 821135934
